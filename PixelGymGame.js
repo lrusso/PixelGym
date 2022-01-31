@@ -966,7 +966,7 @@ PixelGym.Menu.prototype = {
 		this.menuPrivacyPolicyButton.events.onInputUp.add(function()
 			{
 			// OPENING THE PRIVACY POLICY IN ANOTHER TAB
-			window.open("https://www.lrusso.com/privacy.html", "_blank");
+			window.open("https://www.pixelgym.com/privacy.html", "_blank");
 			}, this);
 
 		// CHECKING IF THE SOUND IS DISABLED
