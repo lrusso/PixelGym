@@ -27,18 +27,6 @@
 		<iframe id="content" src="about:blank"></iframe>
 		<script>
 
-			var userLanguage = window.navigator.userLanguage || window.navigator.language;
-
-			// CHECKING THE USER LANGUAGE
-			if (userLanguage.substring(0,2)=="es")
-				{
-				document.querySelector('meta[property="og:description"]').setAttribute("content", "Aerobics con tu webcam-test-es");
-				}
-				else
-				{
-				document.querySelector('meta[property="og:description"]').setAttribute("content", "Aerobics with your webcam-test-en");
-				}
-
 			// WORKAROUND FOR ENABLING AUDIO IN SAFARI
 			var finalAudioContext = null;
 			window.AudioContext = window.AudioContext || window.webkitAudioContext;
