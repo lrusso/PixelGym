@@ -23,10 +23,17 @@
 			#content{position:fixed;height:100%;width:100%;margin:0;padding:0;border:none;display:none}
 		</style>
 		<script>
-			var ogTitle = document.createElement('meta');
-			ogTitle.setAttribute('property', 'og:description');
-			ogTitle.content = "test";
-			document.getElementsByTagName('head')[0].appendChild(ogTitle);
+			var userLanguage = window.navigator.userLanguage || window.navigator.language;
+
+			// CHECKING THE USER LANGUAGE
+			if (userLanguage.substring(0,2)=="es")
+				{
+				document.querySelector('meta[property="og:description"]').setAttribute("content", "Aerobics con tu webcam-test-es");
+				}
+				else
+				{
+				document.querySelector('meta[property="og:description"]').setAttribute("content", "Aerobics with your webcam-test-en");
+				}
 		</script>
 	</head>
 	<body>
