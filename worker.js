@@ -1,5 +1,5 @@
 const filesToCache = [
-	"PixelGym.htm",
+	"/",
 	"PixelGym.json",
 	"PixelGym.png",
 	"PixelGymFavIcon_16x16.png",
