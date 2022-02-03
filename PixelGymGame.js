@@ -965,8 +965,24 @@ PixelGym.Menu.prototype = {
 		this.menuPrivacyPolicyButton.input.useHandCursor = true;
 		this.menuPrivacyPolicyButton.events.onInputUp.add(function()
 			{
-			// OPENING THE PRIVACY POLICY IN ANOTHER TAB
-			window.open("https://www.pixelgym.com/privacy.html", "_blank");
+			// GETTING THE GAME MODE FROM THE URL
+			var gameMode = getValueFromURL("mode");
+
+			// CHECKING IF A GAME MODE WAS SET
+			if (gameMode!=null)
+				{
+				// CHECKING IF THE GAME IS RUNNING IN THE WEB APP MODE
+				if (gameMode=="webapp")
+					{
+					// OPENING THE PRIVACY POLICY IN ANOTHER TAB USING THE WEB APP MODE
+					window.open("./privacy.html?mode=webapp", "_blank");
+					}
+				}
+				else
+				{
+				// OPENING THE PRIVACY POLICY IN ANOTHER TAB
+				window.open("./privacy.html", "_blank");
+				}
 			}, this);
 
 		// CHECKING IF THE SOUND IS DISABLED

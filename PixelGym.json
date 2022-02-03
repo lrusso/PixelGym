@@ -2,7 +2,7 @@
 	"name": "Pixel Gym",
 	"short_name": "Pixel Gym",
 	"lang": "en-US",
-	"start_url": "https://www.pixelgym.com",
+	"start_url": "https://www.pixelgym.com/?mode=webapp",
 	"display": "standalone",
 	"orientation": "portrait",
 	"theme_color": "#000000",
