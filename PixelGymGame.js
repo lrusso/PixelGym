@@ -1122,6 +1122,8 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyNormalButtonText = null;
 		this.menuDifficultyHardButton = null;
 		this.menuDifficultyHardButtonText = null;
+		this.menuDifficultyBackButton = null;
+		this.menuDifficultyBackButtonIcon = null;
 		},
 
 	create: function()
@@ -1204,13 +1206,13 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyHardButtonText.events.onInputUp.add(function(){this.setDifficulty("HARD")},this);
 
 		// ADDING THE BACK BUTTON
-		this.menuBackButton = game.add.button(5, 510, "imageButton", null, this, 2, 1, 0);
-		this.menuBackButton.onInputUp.add(function(){game.state.start("PixelGym.Menu", Phaser.Plugin.StateTransition.Out.SlideRight)}, this);
+		this.menuDifficultyBackButton = game.add.button(5, 510, "imageButton", null, this, 2, 1, 0);
+		this.menuDifficultyBackButton.onInputUp.add(function(){game.state.start("PixelGym.Menu", Phaser.Plugin.StateTransition.Out.SlideRight)}, this);
 
 		// ADDING THE BACK BUTTON ICON
-		this.menuBackButtonIcon = game.add.button(0, this.menuBackButton.position.y + 19, "imageBack", null, this, 2, 1, 0);
-		this.menuBackButtonIcon.position.x = this.menuBackButton.position.x + this.menuBackButton.width / 2 - this.menuBackButtonIcon.width / 2 - 1;
-		this.menuBackButtonIcon.onInputUp.add(function(){game.state.start("PixelGym.Menu", Phaser.Plugin.StateTransition.Out.SlideRight)}, this);
+		this.menuDifficultyBackButtonIcon = game.add.button(0, this.menuDifficultyBackButton.position.y + 19, "imageBack", null, this, 2, 1, 0);
+		this.menuDifficultyBackButtonIcon.position.x = this.menuDifficultyBackButton.position.x + this.menuDifficultyBackButton.width / 2 - this.menuDifficultyBackButtonIcon.width / 2 - 1;
+		this.menuDifficultyBackButtonIcon.onInputUp.add(function(){game.state.start("PixelGym.Menu", Phaser.Plugin.StateTransition.Out.SlideRight)}, this);
 		},
 
 	setDifficulty: function (difficultyValue)
