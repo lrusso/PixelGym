@@ -1139,21 +1139,21 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyModal = game.add.sprite(0, 20, "imageModal");
 		this.menuDifficultyModal.width = 300;
 		this.menuDifficultyModal.position.x = game.width / 2 - this.menuDifficultyModal.width / 2;
-		this.menuDifficultyModal.position.y = game.height / 2 - this.menuDifficultyModal.height / 2;
+		this.menuDifficultyModal.position.y = game.height / 2 - this.menuDifficultyModal.height / 2 - 5;
 
 		// ADDING THE MENU TITLE BACKGROUND
-		this.menuDifficultyTitleBackground = game.add.sprite(0, 90, "imageDifficulty");
+		this.menuDifficultyTitleBackground = game.add.sprite(0, 85, "imageDifficulty");
 		this.menuDifficultyTitleBackground.width = 200;
 		this.menuDifficultyTitleBackground.height = 45;
 		this.menuDifficultyTitleBackground.position.x = game.width / 2 - this.menuDifficultyTitleBackground.width / 2;
 
 		// ADDING THE MENU TITLE TEXT
-		this.menuDifficultyTitleText = game.add.bitmapText(0, 98.5, "ArialBlackWhite", STRING_DIFFICULTY, 20);
+		this.menuDifficultyTitleText = game.add.bitmapText(0, 93.5, "ArialBlackWhite", STRING_DIFFICULTY, 20);
 		this.menuDifficultyTitleText.height = 24;
 		this.menuDifficultyTitleText.position.x = game.width / 2 - this.menuDifficultyTitleText.width / 2;
 
 		// ADDING THE MENU EASY BUTTON
-		this.menuDifficultyEasyButton = game.add.sprite(0, 177, "imageEasy");
+		this.menuDifficultyEasyButton = game.add.sprite(0, 172, "imageEasy");
 		this.menuDifficultyEasyButton.scale.x = 0.7;
 		this.menuDifficultyEasyButton.scale.y = 0.7;
 		this.menuDifficultyEasyButton.position.x = game.width / 2 - this.menuDifficultyEasyButton.width / 2;
@@ -1170,7 +1170,7 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyEasyButtonText.events.onInputUp.add(function(){this.setDifficulty("EASY")},this);
 
 		// ADDING THE MENU NORMAL BUTTON
-		this.menuDifficultyNormalButton = game.add.sprite(0, 278, "imageNormal");
+		this.menuDifficultyNormalButton = game.add.sprite(0, 273, "imageNormal");
 		this.menuDifficultyNormalButton.scale.x = 0.7;
 		this.menuDifficultyNormalButton.scale.y = 0.7;
 		this.menuDifficultyNormalButton.position.x = game.width / 2 - this.menuDifficultyNormalButton.width / 2;
@@ -1187,7 +1187,7 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyNormalButtonText.events.onInputUp.add(function(){this.setDifficulty("NORMAL")},this);
 
 		// ADDING THE MENU HARD BUTTON
-		this.menuDifficultyHardButton = game.add.sprite(0, 379, "imageHard");
+		this.menuDifficultyHardButton = game.add.sprite(0, 374, "imageHard");
 		this.menuDifficultyHardButton.scale.x = 0.7;
 		this.menuDifficultyHardButton.scale.y = 0.7;
 		this.menuDifficultyHardButton.position.x = game.width / 2 - this.menuDifficultyHardButton.width / 2;
@@ -1202,6 +1202,15 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyHardButtonText.inputEnabled = true;
 		this.menuDifficultyHardButtonText.input.useHandCursor = true;
 		this.menuDifficultyHardButtonText.events.onInputUp.add(function(){this.setDifficulty("HARD")},this);
+
+		// ADDING THE BACK BUTTON
+		this.menuBackButton = game.add.button(5, 510, "imageButton", null, this, 2, 1, 0);
+		this.menuBackButton.onInputUp.add(function(){game.state.start("PixelGym.Menu", Phaser.Plugin.StateTransition.Out.SlideRight)}, this);
+
+		// ADDING THE BACK BUTTON ICON
+		this.menuBackButtonIcon = game.add.button(0, this.menuBackButton.position.y + 19, "imageBack", null, this, 2, 1, 0);
+		this.menuBackButtonIcon.position.x = this.menuBackButton.position.x + this.menuBackButton.width / 2 - this.menuBackButtonIcon.width / 2 - 1;
+		this.menuBackButtonIcon.onInputUp.add(function(){game.state.start("PixelGym.Menu", Phaser.Plugin.StateTransition.Out.SlideRight)}, this);
 		},
 
 	setDifficulty: function (difficultyValue)
@@ -2436,7 +2445,7 @@ PixelGym.Game.prototype = {
 			}
 
 		// GOING BACK TO THE MAIN MENU
-		game.state.start("PixelGym.Menu", Phaser.Plugin.StateTransition.Out.SlideRight);
+		game.state.start("PixelGym.Difficulty", Phaser.Plugin.StateTransition.Out.SlideRight);
 		}
 	};
 
