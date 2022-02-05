@@ -1169,7 +1169,7 @@ PixelGym.Settings.prototype = {
 		this.menuSettingsWebcamTestButton.events.onInputUp.add(function()
 			{
 			// SETTING THAT THE GAME WILL BE RUNNING IN TEST MODE
-			testMode=true;
+			testMode = true;
 
 			// REQUESTING THE WEBCAM ACCESS
 			requestWebcam();
@@ -1187,7 +1187,7 @@ PixelGym.Settings.prototype = {
 		this.menuSettingsWebcamTestButtonText.events.onInputUp.add(function()
 			{
 			// SETTING THAT THE GAME WILL BE RUNNING IN TEST MODE
-			testMode=true;
+			testMode = true;
 
 			// REQUESTING THE WEBCAM ACCESS
 			requestWebcam();
@@ -1732,6 +1732,9 @@ PixelGym.WebcamTest.prototype = {
 
 	goBack: function()
 		{
+		// SETTING THAT THE GAME WILL NOT BE RUNNING IN TEST MODE
+		testMode = false;
+
 		// STOPPING THE WEBCAM
 		stopWebcam();
 
