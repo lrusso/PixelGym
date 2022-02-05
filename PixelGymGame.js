@@ -891,6 +891,8 @@ PixelGym.Menu.prototype = {
 		this.menuMainSubtitle2 = null;
 		this.menuMainPlayButton = null;
 		this.menuMainPlayButtonIcon = null;
+		this.menuMainSoundButton = null;
+		this.menuMainSoundButtonIcon = null;
 		this.menuMainSettings = null;
 		this.menuMainSettingsIcon = null;
 		this.menuMainPrivacyPolicyText = null;
@@ -1153,6 +1155,8 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyNormalButtonText = null;
 		this.menuDifficultyHardButton = null;
 		this.menuDifficultyHardButtonText = null;
+		this.menuDifficultyHowToPlayButton = null;
+		this.menuDifficultyHowToPlayButtonText = null;
 		this.menuDifficultyBackButton = null;
 		this.menuDifficultyBackButtonIcon = null;
 		},
@@ -1337,9 +1341,9 @@ PixelGym.HowToPlay = function (game)
 	this.corner2InnerCircle = null;
 	this.corner2OuterCircle = null;
 	this.corner2Hit = null;
-	this.testModeTitle = null;
-	this.testModeLine1 = null;
-	this.testModeLine2 = null;
+	this.howToPlayTitle = null;
+	this.howToPlayLine1 = null;
+	this.howToPlayLine2 = null;
 
 	// SCALING THE CANVAS SIZE FOR THE GAME
 	function resizeF()
@@ -1378,9 +1382,9 @@ PixelGym.HowToPlay.prototype = {
 		this.corner2InnerCircle = null;
 		this.corner2OuterCircle = null;
 		this.corner2Hit = false;
-		this.testModeTitle = null;
-		this.testModeLine1 = null;
-		this.testModeLine2 = null;
+		this.howToPlayTitle = null;
+		this.howToPlayLine1 = null;
+		this.howToPlayLine2 = null;
 		},
 
 	create: function()
@@ -1446,23 +1450,23 @@ PixelGym.HowToPlay.prototype = {
 		// CREATING AN ANIMATION FOR THE CORNER 2
 		game.add.tween(this.corner2InnerCircle).to({x:25, y:25, radius:1}, 3000, "Sine.easeInOut", true, 0, -1, true);
 
-		// ADDING THE MENU WEBCAM TEST BUTTON TEXT
-		this.testModeTitle = game.add.bitmapText(0, 500, "ArialBlackWhite", STRING_HOWTOPLAY, 14);
-		this.testModeTitle.height = 17;
-		this.testModeTitle.position.x = game.width / 2 - this.testModeTitle.width / 2 + 50;
-		this.testModeTitle.alpha = 0;
+		// ADDING THE HOW TO PLAY TITLE
+		this.howToPlayTitle = game.add.bitmapText(0, 500, "ArialBlackWhite", STRING_HOWTOPLAY, 14);
+		this.howToPlayTitle.height = 17;
+		this.howToPlayTitle.position.x = game.width / 2 - this.howToPlayTitle.width / 2 + 50;
+		this.howToPlayTitle.alpha = 0;
 
-		// ADDING THE MENU WEBCAM TEST BUTTON TEXT
-		this.testModeLine1 = game.add.bitmapText(0, 535, "ArialBlackWhite", STRING_HOWTOPLAY_LINE1, 14);
-		this.testModeLine1.height = 17;
-		this.testModeLine1.position.x = game.width / 2 - this.testModeLine1.width / 2 + 50;
-		this.testModeLine1.alpha = 0;
+		// ADDING THE HOW TO PLAY LINE 1
+		this.howToPlayLine1 = game.add.bitmapText(0, 535, "ArialBlackWhite", STRING_HOWTOPLAY_LINE1, 14);
+		this.howToPlayLine1.height = 17;
+		this.howToPlayLine1.position.x = game.width / 2 - this.howToPlayLine1.width / 2 + 50;
+		this.howToPlayLine1.alpha = 0;
 
-		// ADDING THE MENU WEBCAM TEST BUTTON TEXT
-		this.testModeLine2 = game.add.bitmapText(0, 570, "ArialBlackWhite", STRING_HOWTOPLAY_LINE2, 14);
-		this.testModeLine2.height = 17;
-		this.testModeLine2.position.x = game.width / 2 - this.testModeLine2.width / 2 + 50;
-		this.testModeLine2.alpha = 0;
+		// ADDING THE HOW TO PLAY LINE 2
+		this.howToPlayLine2 = game.add.bitmapText(0, 570, "ArialBlackWhite", STRING_HOWTOPLAY_LINE2, 14);
+		this.howToPlayLine2.height = 17;
+		this.howToPlayLine2.position.x = game.width / 2 - this.howToPlayLine2.width / 2 + 50;
+		this.howToPlayLine2.alpha = 0;
 
 		// ADDING THE BACK BUTTON
 		this.backButton = game.add.button(5, 510, "imageButton", null, this, 2, 1, 0);
@@ -1486,13 +1490,13 @@ PixelGym.HowToPlay.prototype = {
 			this.corner2DataSprite.alpha = 1;
 
 			// SHOWING THE TEST MODE TITLE
-			this.testModeTitle.alpha = 1;
+			this.howToPlayTitle.alpha = 1;
 
 			// SHOWING THE TEST MODE LINE 1
-			this.testModeLine1.alpha = 1;
+			this.howToPlayLine1.alpha = 1;
 
 			// SHOWING THE TEST MODE LINE 2
-			this.testModeLine2.alpha = 1;
+			this.howToPlayLine2.alpha = 1;
 			}
 
 		// CHECKING IF THERE WAS AN ERROR WHEN TRYING TO CONNECT TO THE WEBCAM
