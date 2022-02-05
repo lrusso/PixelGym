@@ -1489,13 +1489,13 @@ PixelGym.HowToPlay.prototype = {
 			// SHOWING THE CORNER 2
 			this.corner2DataSprite.alpha = 1;
 
-			// SHOWING THE TEST MODE TITLE
+			// SHOWING THE HOW TO PLAY TITLE
 			this.howToPlayTitle.alpha = 1;
 
-			// SHOWING THE TEST MODE LINE 1
+			// SHOWING THE HOW TO PLAY LINE 1
 			this.howToPlayLine1.alpha = 1;
 
-			// SHOWING THE TEST MODE LINE 2
+			// SHOWING THE HOW TO PLAY LINE 2
 			this.howToPlayLine2.alpha = 1;
 			}
 
