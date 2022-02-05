@@ -1160,6 +1160,7 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyHardButtonText = null;
 		this.menuDifficultyHowToPlayButton = null;
 		this.menuDifficultyHowToPlayButtonText = null;
+		this.menuDifficultyHowToPlayButtonTextAccent = null;
 		this.menuDifficultyBackButton = null;
 		this.menuDifficultyBackButtonIcon = null;
 		},
@@ -1279,6 +1280,15 @@ PixelGym.Difficulty.prototype = {
 			// STARTING THE HOW TO PLAY
 			game.state.start("PixelGym.HowToPlay", Phaser.Plugin.StateTransition.Out.SlideLeft);
 			},this);
+
+		// CHECKING THE USER LANGUAGE IS RUNNING THE GAME IN SPANISH
+		if (userLanguage.substring(0,2)=="es")
+			{
+			// ADDING A SPANISH ACCENT TO AN SPECIFIC WORD IN THE HOW TO PLAY LABEL
+			this.menuDifficultyHowToPlayButtonTextAccent = game.add.bitmapText(0, this.menuDifficultyHowToPlayButton.position.y + 15, "ArialBlackWhite", "´", 20);
+			this.menuDifficultyHowToPlayButtonTextAccent.height = 24;
+			this.menuDifficultyHowToPlayButtonTextAccent.position.x = this.menuDifficultyHowToPlayButtonText.position.x + 23;
+			}
 
 		// ADDING THE BACK BUTTON
 		this.menuDifficultyBackButton = game.add.button(5, 510, "imageButton", null, this, 2, 1, 0);
