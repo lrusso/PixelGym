@@ -1624,6 +1624,7 @@ PixelGym.WebcamTest.prototype = {
 		// ADDING THE CORNER 1 BITMAP DATA AS A SPRITE
 		this.corner1DataSprite = this.corner1Data.addToWorld();
 		this.corner1DataSprite.position.x = 0;
+		this.corner1DataSprite.alpha = 0;
 
 		// CREATING THE CORNER 1 INNER AND OUTER CIRCLES
 		this.corner1InnerCircle = new Phaser.Circle(45, 45, 15);
@@ -1638,6 +1639,7 @@ PixelGym.WebcamTest.prototype = {
 		// ADDING THE CORNER 2 BITMAP DATA AS A SPRITE
 		this.corner2DataSprite = this.corner2Data.addToWorld();
 		this.corner2DataSprite.position.x = 230;
+		this.corner2DataSprite.alpha = 0;
 
 		// CREATING THE CORNER 2 INNER AND OUTER CIRCLES
 		this.corner2InnerCircle = new Phaser.Circle(45, 45, 15);
@@ -1650,16 +1652,19 @@ PixelGym.WebcamTest.prototype = {
 		this.testModeTitle = game.add.bitmapText(0, 500, "ArialBlackWhite", STRING_WEBCAMTEST_TITLE, 14);
 		this.testModeTitle.height = 17;
 		this.testModeTitle.position.x = game.width / 2 - this.testModeTitle.width / 2 + 50;
+		this.testModeTitle.alpha = 0;
 
 		// ADDING THE MENU WEBCAM TEST BUTTON TEXT
 		this.testModeLine1 = game.add.bitmapText(0, 535, "ArialBlackWhite", STRING_WEBCAMTEST_LINE1, 14);
 		this.testModeLine1.height = 17;
 		this.testModeLine1.position.x = game.width / 2 - this.testModeLine1.width / 2 + 50;
+		this.testModeLine1.alpha = 0;
 
 		// ADDING THE MENU WEBCAM TEST BUTTON TEXT
 		this.testModeLine2 = game.add.bitmapText(0, 570, "ArialBlackWhite", STRING_WEBCAMTEST_LINE2, 14);
 		this.testModeLine2.height = 17;
 		this.testModeLine2.position.x = game.width / 2 - this.testModeLine2.width / 2 + 50;
+		this.testModeLine2.alpha = 0;
 
 		// ADDING THE BACK BUTTON
 		this.backButton = game.add.button(5, 510, "imageButton", null, this, 2, 1, 0);
@@ -1673,6 +1678,25 @@ PixelGym.WebcamTest.prototype = {
 
 	update: function()
 		{
+		// CHECKING IF ANY DATA WAS RECEIVED FROM THE WEBCAM
+		if (this.webcamData.dirty==true)
+			{
+			// SHOWING THE CORNER 1
+			this.corner1DataSprite.alpha = 1;
+
+			// SHOWING THE CORNER 2
+			this.corner2DataSprite.alpha = 1;
+
+			// SHOWING THE TEST MODE TITLE
+			this.testModeTitle.alpha = 1;
+
+			// SHOWING THE TEST MODE LINE 1
+			this.testModeLine1.alpha = 1;
+
+			// SHOWING THE TEST MODE LINE 2
+			this.testModeLine2.alpha = 1;
+			}
+
 		// CHECKING IF THERE WAS AN ERROR WHEN TRYING TO CONNECT TO THE WEBCAM
 		if (webcamError==true)
 			{
