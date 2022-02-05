@@ -896,9 +896,6 @@ PixelGym.Menu.prototype = {
 
 	init: function()
 		{
-		// SHOWING THE BACKGROUND IMAGE
-		document.getElementsByClassName("background")[0].style.display = "block";
-
 		this.menuMainBackgroundImage = null;
 		this.menuMainBackgroundImageGrayLayer = null;
 		this.menuMainAppIconShadow = null;
@@ -1053,6 +1050,41 @@ PixelGym.Menu.prototype = {
 
 		// STOPPING THE WEBCAM
 		stopWebcam();
+		},
+
+	getBooleanSetting: function(settingName)
+		{
+		try
+			{
+			var name = "PixelGym" + settingName;
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(";");
+
+			for(var i=0;i < ca.length;i++)
+				{
+				var c = ca[i];
+				while (c.charAt(0)==" ")
+					{
+					c = c.substring(1,c.length);
+					}
+				if (c.indexOf(nameEQ) == 0)
+					{
+					if (c.substring(nameEQ.length,c.length)=="true")
+						{
+						return true;
+						}
+						else
+						{
+						return false;
+						}
+					}
+				}
+			}
+		catch(err)
+			{
+			}
+
+		return true;
 		},
 
 	playGame: function()
