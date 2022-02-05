@@ -126,7 +126,7 @@ if (userLanguage.substring(0,2)=="es")
 	STRING_HOWTOPLAY = "HOW TO PLAY";
 	STRING_HOWTOPLAY_LINE1 = "In a bright room, stand";
 	STRING_HOWTOPLAY_LINE2 = "in front the camera";
-	STRING_HOWTOPLAY_LINE3 = "and hit the ballons.";
+	STRING_HOWTOPLAY_LINE3 = "and punch the ballons.";
 	STRING_CONNECTING = "CONNECTING...";
 	STRING_WEBCAMERROR1 = "WEBCAM";
 	STRING_WEBCAMERROR2 = "NOT AVAILABLE";
