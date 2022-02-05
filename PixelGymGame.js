@@ -83,7 +83,7 @@ if (userLanguage.substring(0,2)=="es")
 	STRING_HARD = "ALTA";
 	STRING_HOWTOPLAY = "COMO JUGAR";
 	STRING_HOWTOPLAY_LINE1 = "En un entorno iluminado,";
-	STRING_HOWTOPLAY_LINE2 = "parate frente a la c" + String.fromCharCode(225) + "mara";
+	STRING_HOWTOPLAY_LINE2 = "p" + String.fromCharCode(225) + "rate frente a la c" + String.fromCharCode(225) + "mara";
 	STRING_HOWTOPLAY_LINE3 = "y golpea los globos.";
 	STRING_CONNECTING = "CONECTANDO...";
 	STRING_WEBCAMERROR1 = "WEBCAM";
