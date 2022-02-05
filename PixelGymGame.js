@@ -1396,6 +1396,7 @@ PixelGym.HowToPlay.prototype = {
 		this.corner2OuterCircle = null;
 		this.corner2Hit = false;
 		this.howToPlayTitle = null;
+		this.howToPlayTitleAccent = null;
 		this.howToPlayLine1 = null;
 		this.howToPlayLine2 = null;
 		this.howToPlayLine3 = null;
@@ -1470,6 +1471,12 @@ PixelGym.HowToPlay.prototype = {
 		this.howToPlayTitle.position.x = game.width / 2 - this.howToPlayTitle.width / 2 + 50;
 		this.howToPlayTitle.alpha = 0;
 
+		// ADDING A SPANISH ACCENT TO AN SPECIFIC WORD IN THE HOW TO PLAY TITLE
+		this.howToPlayTitleAccent = game.add.bitmapText(0, this.howToPlayTitle.position.y - 4, "ArialBlackWhite", "´", 14);
+		this.howToPlayTitleAccent.height = 17;
+		this.howToPlayTitleAccent.position.x = this.howToPlayTitle.position.x + 16;
+		this.howToPlayTitleAccent.alpha = 0;
+
 		// ADDING THE HOW TO PLAY LINE 1
 		this.howToPlayLine1 = game.add.bitmapText(0, 500, "ArialBlackWhite", STRING_HOWTOPLAY_LINE1, 14);
 		this.howToPlayLine1.height = 17;
@@ -1511,6 +1518,13 @@ PixelGym.HowToPlay.prototype = {
 
 			// SHOWING THE HOW TO PLAY TITLE
 			this.howToPlayTitle.alpha = 1;
+
+			// CHECKING THE USER LANGUAGE IS RUNNING THE GAME IN SPANISH
+			if (userLanguage.substring(0,2)=="es")
+				{
+				// SHOWING THE SPANISH ACCENT IN THE HOW TO PLAY TITLE
+				this.howToPlayTitleAccent.alpha = 1;
+				}
 
 			// SHOWING THE HOW TO PLAY LINE 1
 			this.howToPlayLine1.alpha = 1;
