@@ -30,6 +30,7 @@ var STRING_HARD = "";
 var STRING_HOWTOPLAY = "";
 var STRING_HOWTOPLAY_LINE1 = "";
 var STRING_HOWTOPLAY_LINE2 = "";
+var STRING_HOWTOPLAY_LINE3 = "";
 var STRING_CONNECTING = "";
 var STRING_WEBCAMERROR1 = "";
 var STRING_WEBCAMERROR2 = "";
@@ -81,8 +82,9 @@ if (userLanguage.substring(0,2)=="es")
 	STRING_NORMAL = "NORMAL";
 	STRING_HARD = "ALTA";
 	STRING_HOWTOPLAY = "COMO JUGAR";
-	STRING_HOWTOPLAY_LINE1 = "Posiciona la webcam";
-	STRING_HOWTOPLAY_LINE2 = "y golpea los globos.";
+	STRING_HOWTOPLAY_LINE1 = "En un entorno iluminado,";
+	STRING_HOWTOPLAY_LINE2 = "parate frente a la c" + String.fromCharCode(225) + "mara";
+	STRING_HOWTOPLAY_LINE3 = "y golpea los globos.";
 	STRING_CONNECTING = "CONECTANDO...";
 	STRING_WEBCAMERROR1 = "WEBCAM";
 	STRING_WEBCAMERROR2 = "NO DISPONIBLE";
@@ -122,8 +124,9 @@ if (userLanguage.substring(0,2)=="es")
 	STRING_NORMAL = "NORMAL";
 	STRING_HARD = "HARD";
 	STRING_HOWTOPLAY = "HOW TO PLAY";
-	STRING_HOWTOPLAY_LINE1 = "Locate your webcam";
-	STRING_HOWTOPLAY_LINE2 = "and hit the ballons.";
+	STRING_HOWTOPLAY_LINE1 = "In a bright room, stand";
+	STRING_HOWTOPLAY_LINE2 = "in front the camera";
+	STRING_HOWTOPLAY_LINE3 = "and hit the ballons.";
 	STRING_CONNECTING = "CONNECTING...";
 	STRING_WEBCAMERROR1 = "WEBCAM";
 	STRING_WEBCAMERROR2 = "NOT AVAILABLE";
@@ -1385,6 +1388,7 @@ PixelGym.HowToPlay.prototype = {
 		this.howToPlayTitle = null;
 		this.howToPlayLine1 = null;
 		this.howToPlayLine2 = null;
+		this.howToPlayLine3 = null;
 		},
 
 	create: function()
@@ -1451,22 +1455,28 @@ PixelGym.HowToPlay.prototype = {
 		game.add.tween(this.corner2InnerCircle).to({x:25, y:25, radius:1}, 3000, "Sine.easeInOut", true, 0, -1, true);
 
 		// ADDING THE HOW TO PLAY TITLE
-		this.howToPlayTitle = game.add.bitmapText(0, 500, "ArialBlackWhite", STRING_HOWTOPLAY, 14);
+		this.howToPlayTitle = game.add.bitmapText(0, 465, "ArialBlackWhite", STRING_HOWTOPLAY, 14);
 		this.howToPlayTitle.height = 17;
 		this.howToPlayTitle.position.x = game.width / 2 - this.howToPlayTitle.width / 2 + 50;
 		this.howToPlayTitle.alpha = 0;
 
 		// ADDING THE HOW TO PLAY LINE 1
-		this.howToPlayLine1 = game.add.bitmapText(0, 535, "ArialBlackWhite", STRING_HOWTOPLAY_LINE1, 14);
+		this.howToPlayLine1 = game.add.bitmapText(0, 500, "ArialBlackWhite", STRING_HOWTOPLAY_LINE1, 14);
 		this.howToPlayLine1.height = 17;
 		this.howToPlayLine1.position.x = game.width / 2 - this.howToPlayLine1.width / 2 + 50;
 		this.howToPlayLine1.alpha = 0;
 
 		// ADDING THE HOW TO PLAY LINE 2
-		this.howToPlayLine2 = game.add.bitmapText(0, 570, "ArialBlackWhite", STRING_HOWTOPLAY_LINE2, 14);
+		this.howToPlayLine2 = game.add.bitmapText(0, 535, "ArialBlackWhite", STRING_HOWTOPLAY_LINE2, 14);
 		this.howToPlayLine2.height = 17;
 		this.howToPlayLine2.position.x = game.width / 2 - this.howToPlayLine2.width / 2 + 50;
 		this.howToPlayLine2.alpha = 0;
+
+		// ADDING THE HOW TO PLAY LINE 3
+		this.howToPlayLine3 = game.add.bitmapText(0, 570, "ArialBlackWhite", STRING_HOWTOPLAY_LINE3, 14);
+		this.howToPlayLine3.height = 17;
+		this.howToPlayLine3.position.x = game.width / 2 - this.howToPlayLine3.width / 2 + 50;
+		this.howToPlayLine3.alpha = 0;
 
 		// ADDING THE BACK BUTTON
 		this.backButton = game.add.button(5, 510, "imageButton", null, this, 2, 1, 0);
@@ -1497,6 +1507,9 @@ PixelGym.HowToPlay.prototype = {
 
 			// SHOWING THE HOW TO PLAY LINE 2
 			this.howToPlayLine2.alpha = 1;
+
+			// SHOWING THE HOW TO PLAY LINE 3
+			this.howToPlayLine3.alpha = 1;
 			}
 
 		// CHECKING IF THERE WAS AN ERROR WHEN TRYING TO CONNECT TO THE WEBCAM
