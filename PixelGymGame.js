@@ -2619,7 +2619,7 @@ PixelGym.Game.prototype = {
 				if (window.AndroidShareHandler)
 					{
 					// SHARING THE GAME URL
-					window.AndroidShareHandler.share(STRING_APP_NAME + " - " + STRING_SHARE_TEXT + "\n", STRING_APP_URL);
+					window.AndroidShareHandler.share(STRING_APP_URL + " - " + STRING_APP_NAME + " - " + STRING_SHARE_TEXT + "\n");
 					}
 
 				// CHECKING IF THERE SHARE FEATURE IS AVAILABLE
