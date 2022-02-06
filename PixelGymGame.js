@@ -2615,6 +2615,13 @@ PixelGym.Game.prototype = {
 			{
 			try
 				{
+				// CHECKING IF THE GAME IS BEEN USED IN THE NATIVE ANDROID APP
+				if (window.AndroidShareHandler)
+					{
+					// SHARING THE GAME URL
+					window.AndroidShareHandler.share(STRING_APP_NAME + " - " + STRING_SHARE_TEXT + "\n", STRING_APP_URL);
+					}
+
 				// CHECKING IF THERE SHARE FEATURE IS AVAILABLE
 				if (navigator.share)
 					{
