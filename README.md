@@ -1,6 +1,6 @@
 # Pixel Gym
 
-Do aerobic exercises using you webcam.
+Do aerobic exercises using you camera.
 
 ![alt screenshot](PixelGym.png?raw=true)
 
