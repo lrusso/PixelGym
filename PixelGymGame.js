@@ -1172,7 +1172,7 @@ PixelGym.Difficulty.prototype = {
 
 		// ADDING THE BACKGROUND GRAY LAYER
 		this.menuDifficultyBackgroundGrayLayer = game.add.graphics(0, 0);
-		this.menuDifficultyBackgroundGrayLayer.beginFill(0x000000,0.7);
+		this.menuDifficultyBackgroundGrayLayer.beginFill(0x000000,0.65);
 		this.menuDifficultyBackgroundGrayLayer.drawRect(0, 0, game.width, game.height);
 		this.menuDifficultyBackgroundGrayLayer.endFill();
 
