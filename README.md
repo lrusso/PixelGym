@@ -8,9 +8,13 @@ Do aerobic exercises using you camera.
 
 https://www.pixelgym.com
 
-## Debug mode
+## Web Debug mode:
 
 https://www.pixelgym.com/?debug=true
+
+## Android App:
+
+https://play.google.com/store/apps/details?id=com.pixelgym
 
 ## Demo using the Debug mode 
 
