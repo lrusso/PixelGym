@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -38,16 +40,25 @@ public class MainActivity extends Activity {
         {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar);
+        myContext = this;
 
-            myContext = this;
+        themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar);
 
         enableAndSaveGameData();
 
         webView = (WebView) findViewById(R.id.webView1);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
+        if (appWasUpdated()==true)
+            {
+            webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+            }
+            else
+            {
+            webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+            }
+
         webView.setBackgroundColor(Color.rgb(0,0,0));
         webView.addJavascriptInterface(new JavaScriptShareInterface(), "AndroidShareHandler");
         webView.setWebViewClient(new WebViewClient()
@@ -135,7 +146,7 @@ public class MainActivity extends Activity {
         {
         webView.setVisibility(View.GONE);
 
-        new AlertDialog.Builder(themedContext).setTitle(getResources().getString(R.string.textErrorTitle)).setMessage(getResources().getString(R.string.textErrorText)).setPositiveButton(getResources().getString(R.string.textErrorOK),new DialogInterface.OnClickListener()
+        new AlertDialog.Builder(themedContext).setTitle(getResources().getString(R.string.textErrorTitle)).setCancelable(false).setMessage(getResources().getString(R.string.textErrorText)).setPositiveButton(getResources().getString(R.string.textErrorOK),new DialogInterface.OnClickListener()
             {
             public void onClick(DialogInterface dialog,int which)
                 {
@@ -149,16 +160,37 @@ public class MainActivity extends Activity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View view=inflater.inflate(R.layout.privacy, null);
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(themedContext);
-        alertDialog.setTitle(getResources().getString(R.string.textPrivacyTitle));
-        alertDialog.setView(view);
-        alertDialog.setPositiveButton(getResources().getString(R.string.textPrivacyOK), new DialogInterface.OnClickListener()
+        new AlertDialog.Builder(themedContext).setTitle(getResources().getString(R.string.textPrivacyTitle)).setView(view).setCancelable(false).setPositiveButton(getResources().getString(R.string.textPrivacyOK), new DialogInterface.OnClickListener()
             {
             public void onClick(DialogInterface dialog, int whichButton)
                 {
                 }
-            });
-        alertDialog.show();
+            }).show();
+        }
+
+    private boolean appWasUpdated()
+        {
+        SharedPreferences sp = getSharedPreferences("PixelGymStoredPrefs", Activity.MODE_PRIVATE);
+        int lastVersion = sp.getInt("lastVersion", -1);
+
+        try
+            {
+            PackageInfo pInfo = myContext.getPackageManager().getPackageInfo(myContext.getPackageName(), 0);
+            int currentVersion = pInfo.versionCode;
+
+            if (currentVersion>lastVersion)
+                {
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putInt("lastVersion", currentVersion);
+                editor.commit();
+                return true;
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+        return false;
         }
 
     private String loadAssetTextAsString(String name)
