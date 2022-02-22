@@ -7,31 +7,27 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import androidx.annotation.RequiresApi;
+import androidx.webkit.WebViewAssetLoader;
 
 public class MainActivity extends Activity {
     private WebView webView;
     private PermissionRequest mPermissionRequest;
+    private WebViewAssetLoader assetLoader;
     private ContextThemeWrapper themedContext;
     public static Activity myContext;
 
@@ -44,36 +40,19 @@ public class MainActivity extends Activity {
 
         themedContext = new ContextThemeWrapper(this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar);
 
-        enableAndSaveGameData();
+        assetLoader = new WebViewAssetLoader.Builder().addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this)).build();
 
         webView = (WebView) findViewById(R.id.webView1);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setDomStorageEnabled(true);
-
-        if (appWasUpdated()==true)
-            {
-            webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-            }
-            else
-            {
-            webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-            }
-
-        webView.setBackgroundColor(Color.rgb(0,0,0));
-        webView.addJavascriptInterface(new JavaScriptShareInterface(), "AndroidShareHandler");
         webView.setWebViewClient(new WebViewClient()
             {
-            @Override
-            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error)
+            @Override @RequiresApi(21) public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request)
                 {
-                super.onReceivedError(view, request, error);
-                errorLoading();
+                return assetLoader.shouldInterceptRequest(request.getUrl());
                 }
 
-            @Override public void onReceivedHttpError (WebView view, WebResourceRequest request, WebResourceResponse errorResponse)
+            @Override @SuppressWarnings("deprecation") public WebResourceResponse shouldInterceptRequest(WebView view, String request)
                 {
-                super.onReceivedHttpError(view, request, errorResponse);
-                errorLoading();
+                return assetLoader.shouldInterceptRequest(Uri.parse(request));
                 }
 
             @Override public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest request)
@@ -82,6 +61,7 @@ public class MainActivity extends Activity {
                 return true;
                 }
             });
+
         webView.setWebChromeClient(new WebChromeClient()
             {
             @Override public void onPermissionRequest(final PermissionRequest request)
@@ -98,7 +78,12 @@ public class MainActivity extends Activity {
                     }
                 }
             });
-        webView.loadUrl("https://www.pixelgym.com/");
+
+        WebSettings webViewSettings = webView.getSettings();
+        webViewSettings.setJavaScriptEnabled(true);
+        webViewSettings.setDomStorageEnabled(true);
+
+        webView.loadUrl("https://appassets.androidplatform.net/assets/PixelGymGame.htm");
         }
 
     @Override
@@ -142,19 +127,6 @@ public class MainActivity extends Activity {
         CookieManager.getInstance().flush();
         }
 
-    private void errorLoading()
-        {
-        webView.setVisibility(View.GONE);
-
-        new AlertDialog.Builder(themedContext).setTitle(getResources().getString(R.string.textErrorTitle)).setCancelable(false).setMessage(getResources().getString(R.string.textErrorText)).setPositiveButton(getResources().getString(R.string.textErrorOK),new DialogInterface.OnClickListener()
-            {
-            public void onClick(DialogInterface dialog,int which)
-                {
-                System.exit(0);
-                }
-            }).show();
-        }
-
     private void clickInPrivacy()
         {
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -191,49 +163,5 @@ public class MainActivity extends Activity {
             }
 
         return false;
-        }
-
-    private String loadAssetTextAsString(String name)
-        {
-        BufferedReader in = null;
-        try
-            {
-            StringBuilder buf = new StringBuilder();
-            InputStream is = getAssets().open(name);
-            in = new BufferedReader(new InputStreamReader(is));
-
-            String str;
-            boolean isFirst = true;
-            while ((str=in.readLine())!=null)
-                {
-                if (isFirst)
-                    {
-                    isFirst = false;
-                    }
-                    else
-                    {
-                    buf.append("\n");
-                    }
-                buf.append(str);
-                }
-            return buf.toString();
-            }
-            catch (IOException e)
-            {
-            }
-            finally
-            {
-            if (in!=null)
-                {
-                try
-                    {
-                    in.close();
-                    }
-                    catch (IOException e)
-                    {
-                    }
-                }
-            }
-        return null;
         }
     }
