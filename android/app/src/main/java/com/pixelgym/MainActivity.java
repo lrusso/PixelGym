@@ -4,8 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -138,30 +136,5 @@ public class MainActivity extends Activity {
                 {
                 }
             }).show();
-        }
-
-    private boolean appWasUpdated()
-        {
-        SharedPreferences sp = getSharedPreferences("PixelGymStoredPrefs", Activity.MODE_PRIVATE);
-        int lastVersion = sp.getInt("lastVersion", -1);
-
-        try
-            {
-            PackageInfo pInfo = myContext.getPackageManager().getPackageInfo(myContext.getPackageName(), 0);
-            int currentVersion = pInfo.versionCode;
-
-            if (currentVersion>lastVersion)
-                {
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putInt("lastVersion", currentVersion);
-                editor.commit();
-                return true;
-                }
-            }
-            catch (Exception e)
-            {
-            }
-
-        return false;
         }
     }
