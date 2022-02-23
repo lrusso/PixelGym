@@ -2650,14 +2650,14 @@ PixelGym.Game.prototype = {
 				// CHECKING IF THE GAME IS BEEN USED IN THE NATIVE ANDROID APP
 				if (window.AndroidShareHandler)
 					{
-					// SHARING THE GAME URL
+					// SHARING THE ANDROID APP URL IN PLAY STORE
 					window.AndroidShareHandler.share(STRING_APP_URL_APP + " - " + STRING_APP_NAME + " - " + STRING_SHARE_TEXT + "\n");
 					}
 
 				// CHECKING IF THERE SHARE FEATURE IS AVAILABLE
 				if (navigator.share)
 					{
-					// SHARING THE GAME URL
+					// SHARING THE WEB APP URL
 					navigator.share({title: STRING_APP_NAME, text: STRING_APP_NAME + " - " + STRING_SHARE_TEXT + "\n", url: STRING_APP_URL_WEB});
 					}
 				}
