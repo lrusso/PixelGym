@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
@@ -41,6 +42,9 @@ public class MainActivity extends Activity {
         assetLoader = new WebViewAssetLoader.Builder().addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this)).build();
 
         webView = (WebView) findViewById(R.id.webView1);
+        webView.setBackgroundColor(Color.rgb(0,0,0));
+        webView.addJavascriptInterface(new JavaScriptShareInterface(), "AndroidShareHandler");
+
         webView.setWebViewClient(new WebViewClient()
             {
             @Override @RequiresApi(21) public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request)
