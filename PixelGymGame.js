@@ -19,7 +19,8 @@ function getAndroidVersion(){var r=navigator.userAgent.toLowerCase().match(/andr
 var userLanguage = window.navigator.userLanguage || window.navigator.language;
 
 var STRING_APP_NAME = "Pixel Gym";
-var STRING_APP_URL = "https://www.pixelgym.com";
+var STRING_APP_URL_WEB = "https://www.pixelgym.com";
+var STRING_APP_URL_APP = "https://play.google.com/store/apps/details?id=com.pixelgym";
 var STRING_SUBTITLE1 = "";
 var STRING_SUBTITLE2 = "";
 var STRING_PRIVACYPOLICY = "";
@@ -2650,14 +2651,14 @@ PixelGym.Game.prototype = {
 				if (window.AndroidShareHandler)
 					{
 					// SHARING THE GAME URL
-					window.AndroidShareHandler.share(STRING_APP_URL + " - " + STRING_APP_NAME + " - " + STRING_SHARE_TEXT + "\n");
+					window.AndroidShareHandler.share(STRING_APP_URL_APP + " - " + STRING_APP_NAME + " - " + STRING_SHARE_TEXT + "\n");
 					}
 
 				// CHECKING IF THERE SHARE FEATURE IS AVAILABLE
 				if (navigator.share)
 					{
 					// SHARING THE GAME URL
-					navigator.share({title: STRING_APP_NAME, text: STRING_APP_NAME + " - " + STRING_SHARE_TEXT + "\n", url: STRING_APP_URL});
+					navigator.share({title: STRING_APP_NAME, text: STRING_APP_NAME + " - " + STRING_SHARE_TEXT + "\n", url: STRING_APP_URL_WEB});
 					}
 				}
 				catch(err)
