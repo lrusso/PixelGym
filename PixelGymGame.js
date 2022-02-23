@@ -2655,7 +2655,7 @@ PixelGym.Game.prototype = {
 				if (navigator.share)
 					{
 					// SHARING THE WEB APP URL
-					navigator.share({title: STRING_APP_NAME, text: STRING_APP_URL_WEB + " ", url: STRING_APP_URL_WEB});
+					navigator.share({title: STRING_APP_NAME, text: STRING_APP_NAME + " ", url: STRING_APP_URL_WEB});
 					}
 				}
 				catch(err)
