@@ -12,7 +12,7 @@ import WebKit
 
 class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
     {
-    @IBOutlet var webView: WKWebView!
+    var webView: WKWebView!
     let deviceLanguage = NSLocale.preferredLanguages[0]
     var STRING_ERROR_TITLE = "";
     var STRING_ERROR_MESSAGE = "";
@@ -39,8 +39,6 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
 
         // SETTING THAT THE WEBCAM STREAMING WILL WITHIN THE WEBVIEW
         let webConfiguration = WKWebViewConfiguration()
-        webConfiguration.preferences.javaScriptEnabled = true
-        webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = true
         webConfiguration.allowsInlineMediaPlayback = true
 
         // CREATING THE WEBVIEW WITH A BLACK BACKGROUND
@@ -73,7 +71,7 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
         return nil
     }
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+    func webView(_ webView: WKWebView, didFailLoadWithError error: Error) {
         connectionError()
     }
     
@@ -82,9 +80,7 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
     }
 
     func connectionError() {
-        let alertController = UIAlertController(title: STRING_ERROR_TITLE, message: STRING_ERROR_MESSAGE, preferredStyle: .alert)
-
-        self.present(alertController, animated: true, completion: nil)
+        self.present(UIAlertController(title: STRING_ERROR_TITLE, message: STRING_ERROR_MESSAGE, preferredStyle: .alert), animated: true, completion: nil)
     }
 
     func clickInPrivacy() {
@@ -92,13 +88,8 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
 
-        alertController.addAction(UIAlertAction(title: STRING_PRIVACYPOLICY_OK, style: .default, handler: { [self]action in
-            webView.updateFocusIfNeeded();
-        }))
-        
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .left
-         
         let messageText = NSMutableAttributedString(
             string: privacyPolicy,
             attributes: [
@@ -106,9 +97,59 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
                 NSAttributedString.Key.font : UIFont.preferredFont(forTextStyle: .body),
                 NSAttributedString.Key.foregroundColor : UIColor.black,
             ])
-        
         alertController.setValue(messageText, forKey: "attributedMessage")
 
-        self.present(alertController, animated: true, completion: nil)
+        // SETTING THE DESIRED WITH FOR THE ALERT BOX
+        let newWidth = UIScreen.main.bounds.width * 0.90
+
+        // FILTERING WIDTH CONSTRAINTS OF ALERT BASE VIEW WIDTH
+        let widthConstraints = alertController.view.constraints.filter({ return $0.firstAttribute == .width })
+
+        // REMOVING WIDTH CONSTRAINTS
+        alertController.view.removeConstraints(widthConstraints)
+
+        // ADDING CONSTRAINT FOR ALERT BASE VIEW
+        let widthConstraint = NSLayoutConstraint(item: alertController.view!,
+                                                 attribute: .width,
+                                                 relatedBy: .equal,
+                                                 toItem: nil,
+                                                 attribute: .notAnAttribute,
+                                                 multiplier: 1,
+                                                 constant: newWidth)
+        alertController.view.addConstraint(widthConstraint)
+
+        // GETTING THE FIRST CONTAINER
+        let firstContainer = alertController.view.subviews[0]
+
+        // FINDING FIRST CHILD WIDTH CONSTRAINT
+        let constraint = firstContainer.constraints.filter({ return $0.firstAttribute == .width && $0.secondItem == nil })
+        firstContainer.removeConstraints(constraint)
+
+        // REPLACING WITH NEW CONSTRAINT EQUAL TO ALERT.VIEW WIDTH CONSTRAINT THAT WE SETUP EARLIER
+        alertController.view.addConstraint(NSLayoutConstraint(item: firstContainer,
+                                                    attribute: .width,
+                                                    relatedBy: .equal,
+                                                    toItem: alertController.view,
+                                                    attribute: .width,
+                                                    multiplier: 1.0,
+                                                    constant: 0))
+
+        // SAME FOR THE SECOND CHILD WITH WIDTH CONSTRAINT WITH 998 PRIORITY
+        let innerBackground = firstContainer.subviews[0]
+        let innerConstraints = innerBackground.constraints.filter({ return $0.firstAttribute == .width && $0.secondItem == nil })
+        innerBackground.removeConstraints(innerConstraints)
+        firstContainer.addConstraint(NSLayoutConstraint(item: innerBackground,
+                                                        attribute: .width,
+                                                        relatedBy: .equal,
+                                                        toItem: firstContainer,
+                                                        attribute: .width,
+                                                        multiplier: 1.0,
+                                                        constant: 0))
+
+        // ADDING THE OK BUTTON
+        alertController.addAction(UIAlertAction(title: STRING_PRIVACYPOLICY_OK, style: .default, handler: nil))
+
+        // SHOWING THE ALERTBOX
+        present(alertController, animated: true, completion: nil)
     }
 }
