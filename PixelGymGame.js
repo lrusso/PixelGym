@@ -1164,6 +1164,9 @@ PixelGym.Difficulty.prototype = {
 
 	create: function()
 		{
+		// SENDING THE CAMERA REQUEST TO THE NATIVE IOS APP
+		try{window.webkit.messageHandlers.iOSCamRequest.postMessage();}catch(err){}
+
 		// ADDING THE BACKGROUND IMAGE
 		this.menuDifficultyBackground = game.add.sprite(0, 0, "imageDifficultyBackground");
 
