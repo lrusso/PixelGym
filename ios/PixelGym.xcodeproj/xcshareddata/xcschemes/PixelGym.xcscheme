@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4D68814424C6AE4600494532"
-               BuildableName = "SpiderTests.xctest"
-               BlueprintName = "PixelGymTests"
-               ReferencedContainer = "container:PixelGym.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4D68814F24C6AE4600494532"
-               BuildableName = "SpiderUITests.xctest"
-               BlueprintName = "PixelGymUITests"
-               ReferencedContainer = "container:PixelGym.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
