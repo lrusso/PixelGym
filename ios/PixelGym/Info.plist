@@ -23,7 +23,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This game requires access to your camera to play it.</string>
+	<string>This game requires access to your camera to play it because it uses motion detection algorithms to know where you are and when you hit the red ballons using your arms and legs while you stand in front of the device.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Main</string>
 	<key>UIMainStoryboardFile</key>
