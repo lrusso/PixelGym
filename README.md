@@ -12,6 +12,10 @@ https://www.pixelgym.com
 
 https://play.google.com/store/apps/details?id=com.pixelgym
 
+## iOS App
+
+https://apps.apple.com/app/pixel-gym/id1611912403
+
 ## Debug mode
 
 https://www.pixelgym.com/?debug=true
