@@ -80,14 +80,6 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
         connectionError()
     }
     
-    func webView(_ webView: WKWebView,didFinish navigation: WKNavigation!) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
-            AVCaptureDevice.requestAccess(for: .video) { haveCamAccess in
-                print("Access to Camera: \(haveCamAccess)")
-            }
-        }
-    }
-
     func connectionError() {
         self.present(UIAlertController(title: STRING_ERROR_TITLE, message: STRING_ERROR_MESSAGE, preferredStyle: .alert), animated: true, completion: nil)
     }
