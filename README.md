@@ -1,6 +1,6 @@
 # Pixel Gym
 
-Do aerobic exercises using you camera.
+Aerobics with your camera. Easy, fast and free.
 
 ![alt screenshot](PixelGym.png?raw=true)
 
