@@ -42,8 +42,10 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
         webView.backgroundColor = UIColor.black
         webView.scrollView.backgroundColor = UIColor.black
 
-        // LOADING THE WEB GAME URL
-        webView.load(URLRequest(url: URL(string:"https://www.pixelgym.com/")!))
+        // LOADING THE LOCAL WEB GAME URL
+        let htmlFile = Bundle.main.path(forResource: "PixelGymGame", ofType: "htm")
+        let htmlString = try? String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
+        webView.loadHTMLString(htmlString!, baseURL: URL(string: "https://www.pixelgym.com"))
 
         // ADDING THE WEBVIEW TO THE VIEW AND DELEGATING THE EVENTS
         self.view = self.webView!
