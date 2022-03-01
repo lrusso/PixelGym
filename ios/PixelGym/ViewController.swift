@@ -52,9 +52,10 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
-        // FORCING FOCUS IN THE WEBVIEW EVERY ONE SECOND
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] (timer) in
+        // FORCING FOCUS IN THE WEBVIEW EVERY 250 MS
+        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [self] (timer) in
             webView.becomeFirstResponder()
+            webView.setNeedsFocusUpdate()
             webView.updateFocusIfNeeded()
         }
     }
