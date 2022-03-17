@@ -78,6 +78,17 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
         connectionError()
     }
     
+    @available(iOS 15, *)
+    func webView(
+        _ webView: WKWebView,
+        requestMediaCapturePermissionFor origin: WKSecurityOrigin,
+        initiatedByFrame frame: WKFrameInfo,
+        type: WKMediaCaptureType,
+        decisionHandler: @escaping (WKPermissionDecision) -> Void
+    ) {
+        decisionHandler(.grant)
+    }
+
     func connectionError() {
         self.present(UIAlertController(title: STRING_ERROR_TITLE, message: STRING_ERROR_MESSAGE, preferredStyle: .alert), animated: true, completion: nil)
     }
