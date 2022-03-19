@@ -65,9 +65,9 @@ function getAndroidVersion(){var r=navigator.userAgent.toLowerCase().match(/andr
 var userLanguage = window.navigator.userLanguage || window.navigator.language;
 
 var STRING_APP_NAME = "Pixel Gym";
-var STRING_APP_SLOGAN = "";
 var STRING_APP_URL_WEB = "https://www.pixelgym.com";
 var STRING_APP_URL_IOS = "https://apps.apple.com/app/pixel-gym/id1611912403";
+var STRING_APP_URL_IOS_TEXT = "";
 var STRING_APP_URL_ANDROID = "https://play.google.com/store/apps/details?id=com.pixelgym";
 var STRING_SUBTITLE1 = "";
 var STRING_SUBTITLE2 = "";
@@ -122,7 +122,7 @@ var DIFFICULTY_SELECTED_SUFFIX = null;
 // CHECKING THE USER LANGUAGE
 if (userLanguage.substring(0,2)=="es")
 	{
-	STRING_APP_SLOGAN = "Aerobics con tu c" + String.fromCharCode(225) + "mara.";
+	STRING_APP_URL_IOS_TEXT = "en App Store para hacer aerobics con tu c" + String.fromCharCode(225) + "mara!";
 	STRING_SUBTITLE1 = "Aerobics con tu c" + String.fromCharCode(225) + "mara.";
 	STRING_SUBTITLE2 = "F" + String.fromCharCode(225) + "cil, r" + String.fromCharCode(225) + "pido y gratis.";
 	STRING_PRIVACYPOLICY = "Pol" + String.fromCharCode(237) + "tica de privacidad";
@@ -164,7 +164,7 @@ if (userLanguage.substring(0,2)=="es")
 	}
 	else
 	{
-	STRING_APP_SLOGAN = "Aerobics with your camera.";
+	STRING_APP_URL_IOS_TEXT = "on App Store to do aerobics with your camera!";
 	STRING_SUBTITLE1 = "Aerobics with your camera.";
 	STRING_SUBTITLE2 = "Easy, fast and free.";
 	STRING_PRIVACYPOLICY = "Privacy policy";
@@ -2703,7 +2703,7 @@ PixelGym.Game.prototype = {
 				else if (window?.webkit?.messageHandlers?.iOSShareHandler)
 					{
 					// SHARING THE IOS APP URL IN APP STORE
-					window?.webkit?.messageHandlers?.iOSShareHandler.postMessage({text: STRING_APP_NAME + ". " + STRING_APP_SLOGAN + " " + STRING_APP_URL_IOS + " "});
+					window?.webkit?.messageHandlers?.iOSShareHandler.postMessage({title: STRING_APP_NAME + " " + STRING_APP_URL_IOS_TEXT, url: STRING_APP_URL_IOS});
 					}
 
 				// CHECKING IF THERE SHARE FEATURE IS AVAILABLE

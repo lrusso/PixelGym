@@ -92,8 +92,11 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let postMessage = message.body as? NSDictionary
-        let textToShare:String = postMessage?.object(forKey: "text") as! String
-        let activityViewController = UIActivityViewController(activityItems: [ textToShare ] , applicationActivities: nil)
+        let textToShare:String = postMessage?.object(forKey: "title") as! String
+        let urlToShare:String = postMessage?.object(forKey: "url") as! String
+
+        let sharedObjects:[AnyObject] = [URL(string: urlToShare) as AnyObject,textToShare as AnyObject]
+        let activityViewController = UIActivityViewController(activityItems : sharedObjects, applicationActivities: nil)
         if UIDevice.current.userInterfaceIdiom == .pad {
             if let popup = activityViewController.popoverPresentationController {
                 popup.sourceView = self.view
