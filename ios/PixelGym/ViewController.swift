@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import WebKit
 
-class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
+class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler
     {
     var webView: WKWebView!
     let deviceLanguage = NSLocale.preferredLanguages[0]
@@ -34,6 +34,7 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
 
         // SETTING THAT THE WEBCAM STREAMING WILL WITHIN THE WEBVIEW
         let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.userContentController.add(self, name: "iOSShareHandler")
         webConfiguration.allowsInlineMediaPlayback = true
 
         // CREATING THE WEBVIEW WITH A BLACK BACKGROUND
@@ -89,6 +90,19 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate
         decisionHandler(.grant)
     }
 
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        let postMessage = message.body as? NSDictionary
+        let textToShare:String = postMessage?.object(forKey: "text") as! String
+        let activityViewController = UIActivityViewController(activityItems: [ textToShare ] , applicationActivities: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popup = activityViewController.popoverPresentationController {
+                popup.sourceView = self.view
+                popup.sourceRect = CGRect(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 4, width: 0, height: 0)
+            }
+        }
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     func connectionError() {
         self.present(UIAlertController(title: STRING_ERROR_TITLE, message: STRING_ERROR_MESSAGE, preferredStyle: .alert), animated: true, completion: nil)
     }
