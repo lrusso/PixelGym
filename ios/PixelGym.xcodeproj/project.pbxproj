@@ -12,6 +12,7 @@
 		4D68813724C6AE4400494532 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D68813624C6AE4400494532 /* ViewController.swift */; };
 		4D68813A24C6AE4400494532 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D68813824C6AE4400494532 /* Main.storyboard */; };
 		4D68813C24C6AE4500494532 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D68813B24C6AE4500494532 /* Assets.xcassets */; };
+		4D8F8A2F27E633390022F057 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D8F8A3127E633390022F057 /* InfoPlist.strings */; };
 		4DD33AD427CE00280019150D /* PixelGymGame.htm in Resources */ = {isa = PBXBuildFile; fileRef = 4DD33AD327CE00280019150D /* PixelGymGame.htm */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,8 @@
 		4D68813924C6AE4400494532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D68813B24C6AE4500494532 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D68814024C6AE4600494532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D8F8A3027E633390022F057 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4D8F8A3227E633810022F057 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4DD33AD327CE00280019150D /* PixelGymGame.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PixelGymGame.htm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +75,7 @@
 				4D68813824C6AE4400494532 /* Main.storyboard */,
 				4D68813B24C6AE4500494532 /* Assets.xcassets */,
 				4D68814024C6AE4600494532 /* Info.plist */,
+				4D8F8A3127E633390022F057 /* InfoPlist.strings */,
 			);
 			path = PixelGym;
 			sourceTree = "<group>";
@@ -118,6 +122,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 4D68812624C6AE4400494532;
 			productRefGroup = 4D68813024C6AE4400494532 /* Products */;
@@ -135,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D68813C24C6AE4500494532 /* Assets.xcassets in Resources */,
+				4D8F8A2F27E633390022F057 /* InfoPlist.strings in Resources */,
 				4DD33AD427CE00280019150D /* PixelGymGame.htm in Resources */,
 				4D68813A24C6AE4400494532 /* Main.storyboard in Resources */,
 			);
@@ -163,6 +169,15 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		4D8F8A3127E633390022F057 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D8F8A3027E633390022F057 /* en */,
+				4D8F8A3227E633810022F057 /* es */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -170,6 +185,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -230,6 +246,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -285,7 +302,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = R7Z72224GS;
 				INFOPLIST_FILE = "$(SRCROOT)/PixelGym/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -293,7 +310,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelgym;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -306,7 +323,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = R7Z72224GS;
 				INFOPLIST_FILE = "$(SRCROOT)/PixelGym/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -314,7 +331,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelgym;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

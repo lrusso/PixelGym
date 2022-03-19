@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  PixelGym
+
+  Created by Leonardo Javier Russo on 19/03/2022.
+  Copyright © 2022 Leonardo Javier Russo. All rights reserved.
+*/
+NSCameraUsageDescription = "Este juego requiere acceso a tu cámara para jugar porque usa algoritmos de detección de movimiento para saber dónde te encuentras y cuándo golpeas los globos rojos usando tus brazos y piernas mientras estás parado frente al dispositivo.";

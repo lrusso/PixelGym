@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  PixelGym
+
+  Created by Leonardo Javier Russo on 19/03/2022.
+  Copyright © 2022 Leonardo Javier Russo. All rights reserved.
+*/
+NSCameraUsageDescription = "This game requires access to your camera to play it because it uses motion detection algorithms to know where you are and when you hit the red ballons using your arms and legs while you stand in front of the device.";
