@@ -20,6 +20,7 @@ var userLanguage = window.navigator.userLanguage || window.navigator.language;
 
 var STRING_APP_NAME = "Pixel Gym";
 var STRING_APP_WEB_URL = "https://www.pixelgym.com";
+var STRING_APP_WEB_TITLE = "";
 var STRING_APP_IOS_URL = "https://apps.apple.com/app/pixel-gym/id1611912403";
 var STRING_APP_IOS_TITLE = "";
 var STRING_APP_ANDROID_URL = "https://play.google.com/store/apps/details?id=com.pixelgym";
@@ -76,6 +77,7 @@ var DIFFICULTY_SELECTED_SUFFIX = null;
 // CHECKING THE USER LANGUAGE
 if (userLanguage.substring(0,2)=="es")
 	{
+	STRING_APP_WEB_TITLE = "en la Web para hacer aerobics con tu c" + String.fromCharCode(225) + "mara!";
 	STRING_APP_IOS_TITLE = "en App Store para hacer aerobics con tu c" + String.fromCharCode(225) + "mara!";
 	STRING_SUBTITLE1 = "Aerobics con tu c" + String.fromCharCode(225) + "mara.";
 	STRING_SUBTITLE2 = "F" + String.fromCharCode(225) + "cil, r" + String.fromCharCode(225) + "pido y gratis.";
@@ -118,6 +120,7 @@ if (userLanguage.substring(0,2)=="es")
 	}
 	else
 	{
+	STRING_APP_WEB_TITLE = "on the Web to do aerobics with your camera!";
 	STRING_APP_IOS_TITLE = "on App Store to do aerobics with your camera!";
 	STRING_SUBTITLE1 = "Aerobics with your camera.";
 	STRING_SUBTITLE2 = "Easy, fast and free.";
@@ -2664,7 +2667,7 @@ PixelGym.Game.prototype = {
 				else if (navigator.share)
 					{
 					// SHARING THE WEB APP URL
-					navigator.share({title: STRING_APP_NAME, text: STRING_APP_NAME + " ", url: STRING_APP_WEB_URL});
+					navigator.share({title: STRING_APP_NAME + " " + STRING_APP_WEB_TITLE + " ", text: STRING_APP_NAME + " " + STRING_APP_WEB_TITLE + " ", url: STRING_APP_WEB_URL});
 					}
 				}
 				catch(err)
