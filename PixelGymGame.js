@@ -756,44 +756,44 @@ PixelGym.OldDevice.prototype = {
 		// SETTING THE BACKGROUND COLOR
 		this.stage.backgroundColor = "#000000";
 
-		// ADDING THE DISCLAIMER LINE 1
+		// ADDING THE OLD DEVICE LINE 1
 		this.line1 = game.add.bitmapText(0, this.marginY + 20, "ArialBlackWhite", STRING_OLDDEVICE1, 20);
 		this.line1.height = 25;
 		this.line1.tint = 0xFF0000;
 		this.line1.position.x = game.width / 2 - this.line1.width / 2;
 
-		// ADDING THE DISCLAIMER LINE 2
+		// ADDING THE OLD DEVICE LINE 2
 		this.line2 = game.add.bitmapText(0, this.marginY + 50, "ArialBlackWhite", STRING_OLDDEVICE2, 20);
 		this.line2.height = 25;
 		this.line2.tint = 0xFF0000;
 		this.line2.position.x = game.width / 2 - this.line2.width / 2;
 
-		// ADDING THE DISCLAIMER LINE 3
+		// ADDING THE OLD DEVICE LINE 3
 		this.line3 = game.add.bitmapText(0, this.marginY + 140, "ArialBlackWhite", STRING_OLDDEVICE3, 20);
 		this.line3.height = 25;
 		this.line3.position.x = game.width / 2 - this.line3.width / 2;
 
-		// ADDING THE DISCLAIMER LINE 4
+		// ADDING THE OLD DEVICE LINE 4
 		this.line4 = game.add.bitmapText(0, this.marginY + 170, "ArialBlackWhite", STRING_OLDDEVICE4, 20);
 		this.line4.height = 25;
 		this.line4.position.x = game.width / 2 - this.line4.width / 2;
 
-		// ADDING THE DISCLAIMER LINE 5
+		// ADDING THE OLD DEVICE LINE 5
 		this.line5 = game.add.bitmapText(0, this.marginY + 200, "ArialBlackWhite", STRING_OLDDEVICE5, 20);
 		this.line5.height = 25;
 		this.line5.position.x = game.width / 2 - this.line5.width / 2;
 
-		// ADDING THE DISCLAIMER LINE 6
+		// ADDING THE OLD DEVICE LINE 6
 		this.line6 = game.add.bitmapText(0, this.marginY + 230, "ArialBlackWhite", STRING_OLDDEVICE6, 20);
 		this.line6.height = 25;
 		this.line6.position.x = game.width / 2 - this.line6.width / 2;
 
-		// ADDING THE DISCLAIMER LINE 7
+		// ADDING THE OLD DEVICE LINE 7
 		this.line7 = game.add.bitmapText(0, this.marginY + 260, "ArialBlackWhite", STRING_OLDDEVICE7, 20);
 		this.line7.height = 25;
 		this.line7.position.x = game.width / 2 - this.line7.width / 2;
 
-		// ADDING THE DISCLAIMER LINE 8
+		// ADDING THE OLD DEVICE LINE 8
 		this.line8 = game.add.bitmapText(0, this.marginY + 290, "ArialBlackWhite", STRING_OLDDEVICE8, 20);
 		this.line8.height = 25;
 		this.line8.position.x = game.width / 2 - this.line8.width / 2;
