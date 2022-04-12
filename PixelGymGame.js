@@ -720,12 +720,12 @@ PixelGym.Splash.prototype = {
 			// CHECKING IF THE CURRENT DEVICE IS OLDER THAN ANDROID 8
 			if (isMobileDevice()==true && (getAndroidVersion()<8))
 				{
-				// STARTING THE OLD DEVICE MESSAGE
+				// LOADING THE OLD DEVICE MESSAGE SCREEN
 				game.state.start("PixelGym.OldDevice", Phaser.Plugin.StateTransition.Out.SlideLeft);
 				}
 				else
 				{
-				// STARTING THE GAME DISCLAIMER
+				// LOADING THE DISCLAIMER
 				game.state.start("PixelGym.Disclaimer", Phaser.Plugin.StateTransition.Out.SlideLeft);
 				}
 			});
@@ -1143,7 +1143,7 @@ PixelGym.Menu.prototype = {
 
 	playGame: function()
 		{
-		// LAUNCHING THE DIFFICULTY SELECTOR
+		// LOADING THE DIFFICULTY SELECTOR
 		game.state.start("PixelGym.Difficulty", Phaser.Plugin.StateTransition.Out.SlideLeft);
 		}
 	};
@@ -1266,7 +1266,7 @@ PixelGym.Difficulty.prototype = {
 			// REQUESTING THE WEBCAM ACCESS
 			requestWebcam();
 
-			// STARTING THE HOW TO PLAY
+			// LOADING THE HOW TO PLAY
 			game.state.start("PixelGym.HowToPlay", Phaser.Plugin.StateTransition.Out.SlideLeft);
 			},this);
 
@@ -1284,7 +1284,7 @@ PixelGym.Difficulty.prototype = {
 			// REQUESTING THE WEBCAM ACCESS
 			requestWebcam();
 
-			// STARTING THE HOW TO PLAY
+			// LOADING THE HOW TO PLAY
 			game.state.start("PixelGym.HowToPlay", Phaser.Plugin.StateTransition.Out.SlideLeft);
 			},this);
 
@@ -1339,7 +1339,7 @@ PixelGym.Difficulty.prototype = {
 		// REQUESTING THE WEBCAM ACCESS
 		requestWebcam();
 
-		// LAUNCHING THE GAME
+		// LOADING THE GAME
 		game.state.start("PixelGym.Game", Phaser.Plugin.StateTransition.Out.SlideLeft);
 		}
 	};
@@ -1657,7 +1657,7 @@ PixelGym.HowToPlay.prototype = {
 		// STOPPING THE WEBCAM
 		stopWebcam();
 
-		// GOING BACK TO THE SETTINGS MENU
+		// LOADING THE DIFFICULTY SELECTOR
 		game.state.start("PixelGym.Difficulty", Phaser.Plugin.StateTransition.Out.SlideRight);
 		}
 	};
@@ -2893,7 +2893,7 @@ PixelGym.Game.prototype = {
 			this.musicPlayer.destroy();
 			}
 
-		// GOING BACK TO THE DIFFICULTY SELECTOR
+		// LOADING THE DIFFICULTY SELECTOR
 		game.state.start("PixelGym.Difficulty", Phaser.Plugin.StateTransition.Out.SlideRight);
 		}
 	};
