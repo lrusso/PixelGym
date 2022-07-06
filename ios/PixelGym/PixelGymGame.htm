@@ -103,6 +103,8 @@ var STRING_DISCLAIMER7 = "";
 var STRING_DISCLAIMER8 = "";
 var STRING_DISCLAIMER9 = "";
 var STRING_DISCLAIMER10 = "";
+var STRING_DISCLAIMER11_DESKTOP = "";
+var STRING_DISCLAIMER11_MOBILE = "";
 var STRING_HIGHSCORE = "";
 var STRING_YOURSCORE = "";
 var AUDIO_INSTRUCTOR_1 = "";
@@ -120,6 +122,8 @@ var DIFFICULTY_HARD_DELAY = 1000;
 var DIFFICULTY_SELECTED_ORDER = null;
 var DIFFICULTY_SELECTED_DELAY = null;
 var DIFFICULTY_SELECTED_SUFFIX = null;
+
+var MUSIC_PLAYER = null;
 
 // CHECKING THE USER LANGUAGE
 if (userLanguage.substring(0,2)=="es")
@@ -159,6 +163,8 @@ if (userLanguage.substring(0,2)=="es")
 	STRING_DISCLAIMER8 = "Se sugiere la supervisi" + String.fromCharCode(243) + "n";
 	STRING_DISCLAIMER9 = "de adultos en caso de";
 	STRING_DISCLAIMER10 = "que jueguen menores.";
+	STRING_DISCLAIMER11_DESKTOP = "Haga click para continuar";
+	STRING_DISCLAIMER11_MOBILE = "Presione para continuar";
 	STRING_HIGHSCORE = "RECORD";
 	STRING_YOURSCORE = "TU PUNTAJE";
 	AUDIO_INSTRUCTOR_1 = "data:audio/mpeg;base64,//NExAASqMpIAU8YALG4F4BkCQHAixCwVYAoAOAVAmBcFRVjQ8uBoGgaBoGgaCgmAABP+E7u7u4GBgAAAACHFggCAIHPggCHiA5Hg////lHQQhj//4Pg+gIKoKaCAiio//NExAgUix6tlZgoAQChWHjoIEzANTPUIQOlLhPtN43aaktFHlCIGKFgYpHxpEQNOvrQpAQXqMDoz9/jjf///V///t/X/+/5H5fW4//+f/+hyP/+JsLrVUAXEZCZ/tCB//NExAgUOkK+X88QAGYhhBfsswLlzrJFzLTS7VWcODlbM/zYyAx6pnX7aVQSyNoFKQQ//o1lp71eFUCYjVf//pZldAjsAFYn57tJORANAs7//1wMbCyAAKA8p+pKATTu//NExAoUsvqxksDK0SxYFbkc2w+/tyHIkMRt0nz151A3Bgbiwy1YjwsuSkQz0HPlquKipG/1ohHcifpICmZ///////+eZGNr/////oixUXHBMQESHlrB9SVSfixAatBI//NExAoTwXbVvnjM1Mv+2gPRJJHiFv2JRiwKBW2ZJnqK8FhVhnHnHk/9OmD5nzRLCLn7uz2ecEmLAnz7/+1ppKcz//tt7zhkHBYY7//5YDh4ENGruabnWfUY7SUTSxRg//NExA4VivbdnHjK74gG4KpQu66OIrGS0doUdvGZB2YvVkqzzuR2CIa/mEIxr/kWkagkCqKIv0jVM32////5UY5dHbO10dDmb/////vNHOYwTMrf7FWglklRtt2NUYqx//NExAoUGvbmXnmEkmT5v/OHTG0+qj/ziO+jlgiEVd62kEPlEImU7zM5uSijjuz3daVshgrjCSOn9GZk9////+j92mrmshyn1/////+zIUgIunJqUCBYzLsSgIBnQTGN//NExAwRyWrO/IpEfBA9Q1QThplMSBNNWQMN14pwnKZCTM7wuk3c16h0zW/ZvyoJt7u/v16rtP522COZ////k0DP//mliYgKVTIzWNKrLLpGB8wGBdMJgLka5sKAVg4j//NExBcR8W8C/lmEfnf3z/mJTDPM/+kyygCsQMFsYQQ0bzyYJ53LRrdK2Oy9lehzjhyNbrf/upr7yf///F1AuWNpFJxN0bgJv4YDPFqh7FpQMFmZ7bXv1Ls7/6+9+z68//NExCIQqN7eXgvMChWil5J2yc889M9IyvpixYBPu///oSCr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";
@@ -203,6 +209,8 @@ if (userLanguage.substring(0,2)=="es")
 	STRING_DISCLAIMER8 = "Adult supervision is";
 	STRING_DISCLAIMER9 = "suggested in case";
 	STRING_DISCLAIMER10 = "of let minors play.";
+	STRING_DISCLAIMER11_DESKTOP = "Click to continue";
+	STRING_DISCLAIMER11_MOBILE = "Tap to continue";
 	STRING_HIGHSCORE = "BEST SCORE";
 	STRING_YOURSCORE = "YOUR SCORE";
 	AUDIO_INSTRUCTOR_1 = "data:audio/mpeg;base64,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UGblAx//r1L//f/////8GCBIqOiyXCMq//NExFEUCuKyJsHEvNghHuoeAKfcDPvbMiUtKMUXd6iIRFdHRGFugL8EbEkussg5C2zpGQf4WzrH0NF31jafuYP6DvUCfL9P1+M6wFB/Qf8ny//m/////t6hg0z2EVcs//NExFMVquLGfsSKfOg4zJ3AEVph3gSmGAvSXGTYFfp/lIAZJ//k/HL/yifwP6Sl/EtvfAJYGx93oHAoPxDXj2t/KZt6MXwgds50//+z8hhx6EdD1H////0kWEGiAYWV//NExE8TkZbKfnrLCKSVvbpGm6KAVLeDhjX/bBgANyXioTV0bcbCWkzASCCme0QwBxqLz5LEsrnxituscbAYuDiZp8HAuJ0O/8uTBsgz8/////gEAEmPDb3KgAUrKEMw//NExFMTGMLuXkPYJstd48YGE/WsXYEEi0oENziGmsxGIGqtG0ilXUVya7BdAiAwMEVNFu9mROq3QrIQGZU3X/+lJTwYENp+93///+eYcGm6oAEtSdUNw4Gd6uVahmhM//NExFkSYYrCTMJEdAWM4YV38iq3goSRc9aMIWz5GXNw6yIkHKYudiLaVf3sVGIYFtav//q5wgyUKtlJ1n///4oConK3Otcqm6uiAfdF2b0fUMY4x0Jb0XXUQV7xujr1//NExGIR8ZLWXnmErKlujUWjBkq38iu0yn2SxVYU7af/pSjoLUkFR0e1rdHMxmT/rp/////+Q8SCFpaQehpqgYF6yCmiptggZ1RZi/gIyr1DHlPQM3CD0LoICxVAgtjN//NExG0R8rrVlnjEm05sj8v/qZ4AAtaWi/5aStOw5GelHt97S2/91q3/////0yuNC3VAOsERthgMv9WUrFRYkjUzNTpIVAzfx9ttyIgOa0BL3ZD+SB9oBh2xPbr15u/T//NExHgSWrq9lnlEu4GTDcza9OnBP20f++nV//u3/////+cggOGyKgCrAwOYTZAOUs7koxiGov8/oo2A4cq40qqUQkGZLh/zZdAdCwBZ+oRA2gtp1d83Ly9+HWuratl6//NExIESCraltsLEqXtiTyUj0yMn9qGf//KpAIaClUA5v/iSAXCpSAaceSSbtJJb8trc7920SMN0HZT+MN1M85nnoD7yPf+vl///khpmTFnkxnXZ3O/+ZRIuUie+eiIk//NExIsSWXqITssKjNXNE6LuncIJIyGdIz6mPUFLLZLZHJIB9c5LmEkswiEopN4rd3fj8pTQgVtMt7BjYHB8PDm4EhhpR0HLP95wzu607zIvJ7j5OaXtEzheiLLHiCwT//NExJQUAxapllhG/gDC44uUIGjiAgGMUgaICk+ACQD0keLnGxVlATIiq+TgmwWsFq1o+J6PwgQnY5PV8egX4LSBkhSBP0lqqMfwToDqHguCVBNQrUWq1/wALoDuE2De//NExJcS6LLCX0YYAi4DpBCQ5AWnV6v/E2HkO0QgF8SwVEbBwlEaRhvX9f/8rFw1ciBbQkInhKkIBmjvBXSJ6mLqTEFNRTMuMTAwqqqqqqqqqqqqqqqqqqqqqqqqqqqq//NExJ4f0qpICZRoAKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//NExHEAAANIAcAAAKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq";
@@ -234,7 +242,7 @@ var imgDataPrev = [];
 var version = 0;
 var alpha = 0.5;
 
-var GAME_SOUND_ENABLED = false;
+var GAME_SOUND_ENABLED = true;
 
 var debugMode = false;
 var testMode = false;
@@ -862,7 +870,8 @@ PixelGym.Disclaimer.prototype = {
 		this.line8 = null;
 		this.line9 = null;
 		this.line10 = null;
-		this.marginY = 90;
+		this.line11 = null;
+		this.marginY = 50;
 		},
 
 	create: function()
@@ -922,12 +931,30 @@ PixelGym.Disclaimer.prototype = {
 		this.line10.height = 25;
 		this.line10.position.x = game.width / 2 - this.line10.width / 2;
 
-		// WAITING 6500 MS
-		game.time.events.add(6500, function()
+		// CHECKING IF IT IS A MOBILE DEVICE
+		if (isMobileDevice()==true)
+			{
+			// ADDING THE DISCLAIMER LINE 11 FOR MOBILE DEVICES
+			this.line11 = game.add.bitmapText(0, this.marginY + 465, "ArialBlackWhite", STRING_DISCLAIMER11_MOBILE, 20);
+			this.line11.height = 25;
+			this.line11.tint = 0x228B22;
+			this.line11.position.x = game.width / 2 - this.line11.width / 2;
+			}
+			else
+			{
+			// ADDING THE DISCLAIMER LINE 11 FOR DESKTOP DEVICES
+			this.line11 = game.add.bitmapText(0, this.marginY + 465, "ArialBlackWhite", STRING_DISCLAIMER11_DESKTOP, 20);
+			this.line11.height = 25;
+			this.line11.tint = 0x228B22;
+			this.line11.position.x = game.width / 2 - this.line11.width / 2;
+			}
+
+		// SETTING THAT WILL HAPPEN WHEN THE USER STOPS TOUCHING THE SCREEN OR MOUSE UP
+		this.game.input.onUp.add(function()
 			{
 			// LOADING THE GAME MENU
 			game.state.start("PixelGym.Menu", Phaser.Plugin.StateTransition.Out.SlideLeft);
-			});
+			}, this);
 		}
 	};
 
@@ -1086,6 +1113,22 @@ PixelGym.Menu.prototype = {
 			// SHOWING THE SOUND ENABLED IMAGES
 			this.menuMainSoundButton.loadTexture("imageButton");
 			this.menuMainSoundButtonIcon.loadTexture("imageMenuSoundOn");
+
+			// CHECKING IF THE BACKGROUND MUSIC PLAYER IS CREATED
+			if(MUSIC_PLAYER==null)
+				{
+				// SETTING THE AUDIO FILE THAT WILL BE PLAYED AS BACKGROUND MUSIC
+				MUSIC_PLAYER = this.add.audio("musicBackground");
+
+				// SETTING THE BACKGROUND MUSIC VOLUME
+				MUSIC_PLAYER.volume = 0.15;
+
+				// SETTING THAT THE BACKGROUND MUSIC WILL BE LOOPING
+				MUSIC_PLAYER.loop = true;
+
+				// PLAYING THE BACKGROUND MUSIC
+				MUSIC_PLAYER.play();
+				}
 			}
 		},
 
@@ -1172,6 +1215,16 @@ PixelGym.Menu.prototype = {
 			// SHOWING THE SOUND DISABLED IMAGES
 			this.menuMainSoundButton.loadTexture("imageButtonDisabled")
 			this.menuMainSoundButtonIcon.loadTexture("imageMenuSoundOff");
+
+			// CHECKING IF THE BACKGROUND MUSIC PLAYER IS CREATED
+			if(MUSIC_PLAYER!=null)
+				{
+				// PAUSING THE BACKGROUND MUSIC PLAYER
+				MUSIC_PLAYER.pause();
+
+				// DESTROYING THE BACKGROUND MUSIC PLAYER
+				MUSIC_PLAYER.destroy();
+				}
 			}
 			else
 			{
@@ -1184,6 +1237,28 @@ PixelGym.Menu.prototype = {
 			// SHOWING THE SOUND ENABLED IMAGES
 			this.menuMainSoundButton.loadTexture("imageButton")
 			this.menuMainSoundButtonIcon.loadTexture("imageMenuSoundOn");
+
+			// CHECKING IF THE BACKGROUND MUSIC PLAYER IS CREATED
+			if(MUSIC_PLAYER!=null)
+				{
+				// PAUSING THE BACKGROUND MUSIC PLAYER
+				MUSIC_PLAYER.pause();
+
+				// DESTROYING THE BACKGROUND MUSIC PLAYER
+				MUSIC_PLAYER.destroy();
+				}
+
+			// SETTING THE AUDIO FILE THAT WILL BE PLAYED AS BACKGROUND MUSIC
+			MUSIC_PLAYER = this.add.audio("musicBackground");
+
+			// SETTING THE BACKGROUND MUSIC VOLUME
+			MUSIC_PLAYER.volume = 0.15;
+
+			// SETTING THAT THE BACKGROUND MUSIC WILL BE LOOPING
+			MUSIC_PLAYER.loop = true;
+
+			// PLAYING THE BACKGROUND MUSIC
+			MUSIC_PLAYER.play();
 			}
 		},
 
@@ -1764,8 +1839,6 @@ PixelGym.Game = function (game)
 	this.gameOverButtonShare = null;
 	this.gameOverButtonShareIcon = null;
 	this.scoreValue = null;
-	this.musicPlayer = null;
-	this.musicPlayerStarted = null;
 	this.audioPlayer = null;
 	this.audioInstructorPlayer = null;
 	this.lastAudio = null;
@@ -1846,8 +1919,6 @@ PixelGym.Game.prototype = {
 		this.gameOverButtonShare = null;
 		this.gameOverButtonShareIcon = null;
 		this.scoreValue = 0;
-		this.musicPlayer = null;
-		this.musicPlayerStarted = false;
 		this.audioPlayer = null;
 		this.audioInstructorPlayer = null;
 		this.lastAudio = "";
@@ -2128,39 +2199,6 @@ PixelGym.Game.prototype = {
 
 	update: function()
 		{
-		// CHECKING IF ANY DATA WAS RECEIVED FROM THE WEBCAM AND THAT THE MUSIC HASN'T STARTED YET
-		if (this.webcamData.dirty==true && this.musicPlayerStarted==false)
-			{
-			// CHECKING IF THE SOUND IS ENABLED
-			if (GAME_SOUND_ENABLED==true)
-				{
-				// CHECKING IF THE BACKGROUND MUSIC PLAYER IS CREATED
-				if(this.musicPlayer!=null)
-					{
-					// PAUSING THE BACKGROUND MUSIC PLAYER
-					this.musicPlayer.pause();
-
-					// DESTROYING THE BACKGROUND MUSIC PLAYER
-					this.musicPlayer.destroy();
-					}
-
-				// SETTING THE AUDIO FILE THAT WILL BE PLAYED AS BACKGROUND MUSIC
-				this.musicPlayer = this.add.audio("musicBackground");
-
-				// SETTING THE BACKGROUND MUSIC VOLUME
-				this.musicPlayer.volume = 0.15;
-
-				// SETTING THAT THE BACKGROUND MUSIC WILL BE LOOPING
-				this.musicPlayer.loop = true;
-
-				// PLAYING THE BACKGROUND MUSIC
-				this.musicPlayer.play();
-				}
-
-			// SETTING THAT THE MUSIC HAS STARTED
-			this.musicPlayerStarted = true;
-			}
-
 		// CHECKING IF THERE WAS AN ERROR WHEN TRYING TO CONNECT TO THE WEBCAM
 		if (webcamError==true)
 			{
@@ -2636,16 +2674,12 @@ PixelGym.Game.prototype = {
 			if (GAME_SOUND_ENABLED==true)
 				{
 				// CHECKING IF THE BACKGROUND MUSIC PLAYER IS CREATED
-				if(this.musicPlayer!=null)
+				if(MUSIC_PLAYER!=null)
 					{
 					// LOWERING THE BACKGROUND MUSIC VOLUME
-					this.musicPlayer.volume = 0.05;
+					MUSIC_PLAYER.volume = 0.05;
 					}
-				}
 
-			// CHECKING IF THE SOUND IS ENABLED
-			if (GAME_SOUND_ENABLED==true)
-				{
 				// CHECKING IF THE AUDIO PLAYER IS CREATED
 				if(this.audioInstructorPlayer!=null)
 					{
@@ -2734,19 +2768,12 @@ PixelGym.Game.prototype = {
 			if (GAME_SOUND_ENABLED==true)
 				{
 				// CHECKING IF THE BACKGROUND MUSIC PLAYER IS CREATED
-				if(this.musicPlayer!=null)
+				if(MUSIC_PLAYER!=null)
 					{
-					// PAUSING THE BACKGROUND MUSIC PLAYER
-					this.musicPlayer.pause();
-
-					// DESTROYING THE BACKGROUND MUSIC PLAYER
-					this.musicPlayer.destroy();
+					// RESTORING THE BACKGROUND MUSIC VOLUME
+					MUSIC_PLAYER.volume = 0.15;
 					}
-				}
 
-			// CHECKING IF THE SOUND IS ENABLED
-			if (GAME_SOUND_ENABLED==true)
-				{
 				// CHECKING IF THE AUDIO PLAYER IS CREATED
 				if(this.audioInstructorPlayer!=null)
 					{
@@ -2928,16 +2955,6 @@ PixelGym.Game.prototype = {
 		{
 		// STOPPING THE WEBCAM
 		stopWebcam();
-
-		// CHECKING IF THE BACKGROUND MUSIC PLAYER IS CREATED
-		if(this.musicPlayer!=null)
-			{
-			// PAUSING THE BACKGROUND MUSIC PLAYER
-			this.musicPlayer.pause();
-
-			// DESTROYING THE BACKGROUND MUSIC PLAYER
-			this.musicPlayer.destroy();
-			}
 
 		// LOADING THE DIFFICULTY SELECTOR
 		game.state.start("PixelGym.Difficulty", Phaser.Plugin.StateTransition.Out.SlideRight);
