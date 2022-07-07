@@ -28,6 +28,8 @@ https://www.pixelgym.com/?debug=true
 
 https://github.com/jasonmayes/JS-Motion-Detection
 
+## Photos taken by Diana Grytsku and Arthur Hidden.
+
 <!--
 
 ffmpeg -i in.mp4 -filter:v "crop=1080:1889:0:260" -c:a copy out.mp4
