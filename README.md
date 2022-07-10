@@ -24,7 +24,11 @@ https://www.pixelgym.com/?debug=true
 
 ![alt demo](PixelGym.gif?raw=true)
 
-## Based on the work of:
+## Banner Generator
+
+https://www.pixelgym.com/Banner.htm
+
+## Motion detection logic based on the work of:
 
 https://github.com/jasonmayes/JS-Motion-Detection
 
