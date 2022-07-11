@@ -32,7 +32,7 @@ https://www.pixelgym.com/Banner.htm
 
 https://github.com/jasonmayes/JS-Motion-Detection
 
-## Photos taken by Diana Grytsku and Arthur Hidden.
+## Photos taken by Diana Grytsku and Arthur Bargan.
 
 <!--
 
