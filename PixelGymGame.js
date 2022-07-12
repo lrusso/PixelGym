@@ -1522,7 +1522,6 @@ PixelGym.HowToPlay.prototype = {
 		this.webcamSprite = this.webcamData.addToWorld();
 
 		// RESIZING THE STREAMING VIDEO SIZE TO THE GAME SIZE
-		this.webcamSprite.position.y = 0;
 		this.webcamSprite.width = game.width;
 		this.webcamSprite.height = game.height;
 
@@ -1897,13 +1896,13 @@ PixelGym.Game.prototype = {
 		// ADDING THE BACKGROUND IMAGE
 		this.backgroundGame = game.add.sprite(0, 0, "imageDifficultyBackground");
 
-		// ADDING THE BACKGROUND GRAY LAYER
+		// ADDING THE BACKGROUND IMAGE GRAY LAYER
 		this.backgroundGameGrayLayer = game.add.graphics(0, 0);
 		this.backgroundGameGrayLayer.beginFill(0x000000,0.65);
 		this.backgroundGameGrayLayer.drawRect(0, 0, game.width, game.height);
 		this.backgroundGameGrayLayer.endFill();
 
-		// SETTING THE BACKGROUND COLOR
+		// ADDING THE BACKGROUND IMAGE CUTTER
 		this.backgroundGameCutter = game.add.graphics(0, 0);
 		this.backgroundGameCutter.beginFill(0x000000, 1);
 		this.backgroundGameCutter.drawRect(0, 64, 320, 608);
