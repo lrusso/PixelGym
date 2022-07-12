@@ -1522,6 +1522,7 @@ PixelGym.HowToPlay.prototype = {
 		this.webcamSprite = this.webcamData.addToWorld();
 
 		// RESIZING THE STREAMING VIDEO SIZE TO THE GAME SIZE
+		this.webcamSprite.position.y = 0;
 		this.webcamSprite.width = game.width;
 		this.webcamSprite.height = game.height;
 
@@ -1739,6 +1740,9 @@ PixelGym.HowToPlay.prototype = {
 
 PixelGym.Game = function (game)
 	{
+	this.backgroundGame = null;
+	this.backgroundGameCutter = null;
+	this.backgroundGameGrayLayer = null;
 	this.connectingText = null;
 	this.errorText1 = null;
 	this.errorText1Accent = null;
@@ -1774,6 +1778,7 @@ PixelGym.Game = function (game)
 	this.backButtonIcon = null;
 	this.scoreBackground = null;
 	this.scoreLabel = null;
+	this.heartBackground = null;
 	this.heart1Shadow = null;
 	this.heart1 = null;
 	this.heart2Shadow = null;
@@ -1819,6 +1824,9 @@ PixelGym.Game.prototype = {
 
 	init: function()
 		{
+		this.backgroundGame = null;
+		this.backgroundGameCutter = null;
+		this.backgroundGameGrayLayer = null;
 		this.connectingText = null;
 		this.errorText1 = null;
 		this.errorText1Accent = null;
@@ -1854,6 +1862,7 @@ PixelGym.Game.prototype = {
 		this.backButtonIcon = null;
 		this.scoreBackground = null;
 		this.scoreLabel = null;
+		this.heartBackground = null;
 		this.heart1Shadow = null;
 		this.heart1 = null;
 		this.heart2Shadow = null;
@@ -1884,6 +1893,20 @@ PixelGym.Game.prototype = {
 		{
 		// SETTING THE BACKGROUND COLOR
 		this.stage.backgroundColor = "#000000";
+
+		// ADDING THE BACKGROUND IMAGE
+		this.backgroundGame = game.add.sprite(0, 0, "imageDifficultyBackground");
+
+		// ADDING THE BACKGROUND GRAY LAYER
+		this.backgroundGameGrayLayer = game.add.graphics(0, 0);
+		this.backgroundGameGrayLayer.beginFill(0x000000,0.65);
+		this.backgroundGameGrayLayer.drawRect(0, 0, game.width, game.height);
+		this.backgroundGameGrayLayer.endFill();
+
+		// SETTING THE BACKGROUND COLOR
+		this.backgroundGameCutter = game.add.graphics(0, 0);
+		this.backgroundGameCutter.beginFill(0x000000, 1);
+		this.backgroundGameCutter.drawRect(0, 64, 320, 608);
 
 		// ADDING THE CONNECTING TEXT
 		this.connectingText = game.add.bitmapText(210, 513, "ArialBlackWhite", STRING_CONNECTING, 25);
@@ -1923,8 +1946,9 @@ PixelGym.Game.prototype = {
 		this.webcamSprite = this.webcamData.addToWorld();
 
 		// RESIZING THE STREAMING VIDEO SIZE TO THE GAME SIZE
+		this.webcamSprite.position.y = 64;
 		this.webcamSprite.width = game.width;
-		this.webcamSprite.height = game.height;
+		this.webcamSprite.height = game.height - 64;
 
 		// CREATING THE CORNER 1 BITMAP DATA
 		this.corner1Data = game.make.bitmapData(100, 100);
@@ -1932,6 +1956,7 @@ PixelGym.Game.prototype = {
 		// ADDING THE CORNER 1 BITMAP DATA AS A SPRITE
 		this.corner1DataSprite = this.corner1Data.addToWorld();
 		this.corner1DataSprite.position.x = 0;
+		this.corner1DataSprite.position.y = 64;
 		this.corner1DataSprite.alpha = 0;
 
 		// CREATING THE CORNER 1 INNER AND OUTER CIRCLES
@@ -1947,6 +1972,7 @@ PixelGym.Game.prototype = {
 		// ADDING THE CORNER 2 BITMAP DATA AS A SPRITE
 		this.corner2DataSprite = this.corner2Data.addToWorld();
 		this.corner2DataSprite.position.x = 230;
+		this.corner2DataSprite.position.y = 64;
 		this.corner2DataSprite.alpha = 0;
 
 		// CREATING THE CORNER 2 INNER AND OUTER CIRCLES
@@ -1962,7 +1988,7 @@ PixelGym.Game.prototype = {
 		// ADDING THE CORNER 3 BITMAP DATA AS A SPRITE
 		this.corner3DataSprite = this.corner3Data.addToWorld();
 		this.corner3DataSprite.position.x = 0;
-		this.corner3DataSprite.position.y = game.height - 200;
+		this.corner3DataSprite.position.y = game.height - 95;
 		this.corner3DataSprite.alpha = 0;
 
 		// CREATING THE CORNER 3 INNER AND OUTER CIRCLES
@@ -1978,7 +2004,7 @@ PixelGym.Game.prototype = {
 		// ADDING THE CORNER 4 BITMAP DATA AS A SPRITE
 		this.corner4DataSprite = this.corner4Data.addToWorld();
 		this.corner4DataSprite.position.x = 230;
-		this.corner4DataSprite.position.y = game.height - 200;
+		this.corner4DataSprite.position.y = game.height - 95;
 		this.corner4DataSprite.alpha = 0;
 
 		// CREATING THE CORNER 4 INNER AND OUTER CIRCLES
@@ -1989,37 +2015,47 @@ PixelGym.Game.prototype = {
 		game.add.tween(this.corner4InnerCircle).to({x:25, y:25, radius:1}, 3000, "Sine.easeInOut", true, 0, -1, true);
 
 		// ADDING THE BACK BUTTON
-		this.backButton = game.add.button(5, 510, "imageButton", null, this, 2, 1, 0);
+		this.backButton = game.add.button(5, 11, "imageButton", null, this, 2, 1, 0);
+		this.backButton.scale.x = 0.5;
+		this.backButton.scale.y = 0.5;
 		this.backButton.onInputUp.add(this.goBack, this);
 
 		// ADDING THE RESTART GAME BUTTON ICON
-		this.backButtonIcon = game.add.button(0, this.backButton.position.y + 19, "imageGoBack", null, this, 2, 1, 0);
-		this.backButtonIcon.position.x = this.backButton.position.x + this.backButton.width / 2 - this.backButtonIcon.width / 2 - 1;
+		this.backButtonIcon = game.add.button(this.backButton.position.x + 11, this.backButton.position.y + 10, "imageGoBack", null, this, 2, 1, 0);
+		this.backButtonIcon.scale.x = 0.5;
+		this.backButtonIcon.scale.y = 0.5;
 		this.backButtonIcon.onInputUp.add(this.goBack, this);
 
-		// ADDING THE GAME OVER HIGHSCORE BOX
-		this.scoreBackground = game.add.sprite(200, 555, "imageGameOverScoreBox");
-		this.scoreBackground.width = 110;
+		// ADDING THE SCORE BOX
+		this.scoreBackground = game.add.sprite(61, 11, "imageGameOverScoreBox");
+		this.scoreBackground.height = 45;
+		this.scoreBackground.width = 132;
 
 		// ADDING THE SCORE LABEL
-		this.scoreLabel = game.add.bitmapText(210, 565.5, "ArialBlackWhite", "0", 25);
+		this.scoreLabel = game.add.bitmapText(71, 20.25, "ArialBlackWhite", "0", 25);
 		this.scoreLabel.height = 30;
 		this.scoreLabel.tint = 0x007fe6;
+		this.scoreLabel.position.x = this.scoreBackground.position.x + this.scoreBackground.width / 2 - this.scoreLabel.width / 2;
+
+		// ADDING THE HEART BOX
+		this.heartBackground = game.add.sprite(205, 11, "imageGameOverScoreBox");
+		this.heartBackground.height = 45;
+		this.heartBackground.width = 105;
 
 		// ADDING THE FIRST HEART
-		this.heart1Shadow = game.add.sprite(211, 522, "imageGameHeart");
+		this.heart1Shadow = game.add.sprite(212, 18.5, "imageGameHeart");
 		this.heart1Shadow.tint = 0x000000;
-		this.heart1 = game.add.sprite(210, 520, "imageGameHeart");
+		this.heart1 = game.add.sprite(210, 16.5, "imageGameHeart");
 
 		// ADDING THE SECOND HEART
-		this.heart2Shadow = game.add.sprite(241, 522, "imageGameHeart");
+		this.heart2Shadow = game.add.sprite(242, 18.5, "imageGameHeart");
 		this.heart2Shadow.tint = 0x000000;
-		this.heart2 = game.add.sprite(240, 520, "imageGameHeart");
+		this.heart2 = game.add.sprite(240, 16.5, "imageGameHeart");
 
 		// ADDING THE THIRD HEART
-		this.heart3Shadow = game.add.sprite(271, 522, "imageGameHeart");
+		this.heart3Shadow = game.add.sprite(272, 18.5, "imageGameHeart");
 		this.heart3Shadow.tint = 0x000000;
-		this.heart3 = game.add.sprite(270, 520, "imageGameHeart");
+		this.heart3 = game.add.sprite(270, 16.5, "imageGameHeart");
 
 		// ADDING THE GAME OVER BACKGROUND
 		this.gameOverBackground = game.add.graphics(0, 0);
@@ -2565,37 +2601,30 @@ PixelGym.Game.prototype = {
 	loseHeart: function()
 		{
 		// CHECKING IF THE THIRD HEART IS VISIBLE
-		if (this.heart3.visible==true)
+		if (this.heart3.tint!=0x000000)
 			{
 			// LOSING ONE HEART
-			this.heart3.visible = false;
+			this.heart3.tint = 0x000000;
 
 			// PLAYING THE LOSE HEART SOUND
 			this.playLoseHeart();
 			}
 
 		// CHECKING IF THE SECOND HEART IS VISIBLE
-		else if (this.heart2.visible==true)
+		else if (this.heart2.tint!=0x000000)
 			{
 			// LOSING ONE HEART
-			this.heart2.visible = false;
+			this.heart2.tint = 0x000000;
 
 			// PLAYING THE LOSE HEART SOUND
 			this.playLoseHeart();
 			}
 
 		// CHECKING IF THE FIRST HEART IS VISIBLE
-		else if (this.heart1.visible==true)
+		else if (this.heart1.tint!=0x000000)
 			{
-			// HIDING ALL THE REMAIN UI ELEMENTS
-			this.heart1.visible = false;
-			this.heart1Shadow.visible = false;
-			this.heart2Shadow.visible = false;
-			this.heart3Shadow.visible = false;
-			this.backButton.visible = false;
-			this.backButtonIcon.visible = false;
-			this.scoreBackground.visible = false;
-			this.scoreLabel.visible = false;
+			// LOSING ONE HEART
+			this.heart1.tint = 0x000000;
 
 			// SETTING THAT THE GAME IS OVER
 			this.isGameOver = true;
@@ -2761,6 +2790,9 @@ PixelGym.Game.prototype = {
 
 		// UPDATING THE SCORE WITH THE NEW VALUE
 		this.scoreLabel.setText(newScore);
+
+		// CENTERING THE SCORE LABEL
+		this.scoreLabel.position.x = this.scoreBackground.position.x + this.scoreBackground.width / 2 - this.scoreLabel.width / 2;
 
 		// CHECKING IF THE CURRENT SCORE HITS THE HIGH SCORE
 		if (this.scoreValue>this.getHighscore())
