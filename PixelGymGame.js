@@ -2020,7 +2020,7 @@ PixelGym.Game.prototype = {
 		this.backButton.onInputUp.add(this.goBack, this);
 
 		// ADDING THE RESTART GAME BUTTON ICON
-		this.backButtonIcon = game.add.button(this.backButton.position.x + 11, this.backButton.position.y + 10, "imageGoBack", null, this, 2, 1, 0);
+		this.backButtonIcon = game.add.button(this.backButton.position.x + 12, this.backButton.position.y + 10, "imageGoBack", null, this, 2, 1, 0);
 		this.backButtonIcon.scale.x = 0.5;
 		this.backButtonIcon.scale.y = 0.5;
 		this.backButtonIcon.onInputUp.add(this.goBack, this);
@@ -2042,19 +2042,19 @@ PixelGym.Game.prototype = {
 		this.heartBackground.width = 105;
 
 		// ADDING THE FIRST HEART
-		this.heart1Shadow = game.add.sprite(212, 18.5, "imageGameHeart");
+		this.heart1Shadow = game.add.sprite(212.5, 19, "imageGameHeart");
 		this.heart1Shadow.tint = 0x000000;
-		this.heart1 = game.add.sprite(210, 16.5, "imageGameHeart");
+		this.heart1 = game.add.sprite(210.5, 17, "imageGameHeart");
 
 		// ADDING THE SECOND HEART
-		this.heart2Shadow = game.add.sprite(242, 18.5, "imageGameHeart");
+		this.heart2Shadow = game.add.sprite(242.5, 19, "imageGameHeart");
 		this.heart2Shadow.tint = 0x000000;
-		this.heart2 = game.add.sprite(240, 16.5, "imageGameHeart");
+		this.heart2 = game.add.sprite(240.5, 17, "imageGameHeart");
 
 		// ADDING THE THIRD HEART
-		this.heart3Shadow = game.add.sprite(272, 18.5, "imageGameHeart");
+		this.heart3Shadow = game.add.sprite(272.5, 19, "imageGameHeart");
 		this.heart3Shadow.tint = 0x000000;
-		this.heart3 = game.add.sprite(270, 16.5, "imageGameHeart");
+		this.heart3 = game.add.sprite(270.5, 17, "imageGameHeart");
 
 		// ADDING THE GAME OVER BACKGROUND
 		this.gameOverBackground = game.add.graphics(0, 0);
@@ -2938,11 +2938,15 @@ PixelGym.Game.prototype = {
 
 	goBack: function()
 		{
-		// STOPPING THE WEBCAM
-		stopWebcam();
+		// CHECKING IF THE GAME IS NOT OVER
+		if (this.isGameOver==false)
+			{
+			// STOPPING THE WEBCAM
+			stopWebcam();
 
-		// LOADING THE DIFFICULTY SELECTOR
-		game.state.start("PixelGym.Difficulty", Phaser.Plugin.StateTransition.Out.SlideRight);
+			// LOADING THE DIFFICULTY SELECTOR
+			game.state.start("PixelGym.Difficulty", Phaser.Plugin.StateTransition.Out.SlideRight);
+			}
 		}
 	};
 
