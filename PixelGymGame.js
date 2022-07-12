@@ -1498,13 +1498,13 @@ PixelGym.HowToPlay.prototype = {
 		// ADDING THE CONNECTING TEXT
 		this.connectingText = game.add.bitmapText(210, 513, "ArialBlackWhite", STRING_CONNECTING, 25);
 		this.connectingText.height = 30;
-		this.connectingText.position.y = game.height / 2 - this.connectingText.height / 2 + 48;
+		this.connectingText.position.y = game.height / 2 - this.connectingText.height / 2 + 32;
 		this.connectingText.position.x = game.width / 2 - this.connectingText.width / 2;
 
 		// ADDING THE ERROR TEXT
 		this.errorText1 = game.add.bitmapText(210, 513, "ArialBlackWhite", STRING_WEBCAMERROR1, 25);
 		this.errorText1.height = 30;
-		this.errorText1.position.y = game.height / 2 - this.errorText1.height / 2 - 15 - 30 + 48;
+		this.errorText1.position.y = game.height / 2 - this.errorText1.height / 2 - 15 - 30 + 32;
 		this.errorText1.position.x = game.width / 2 - this.errorText1.width / 2;
 		this.errorText1.visible = false;
 		this.errorText1Accent = game.add.bitmapText(210, this.errorText1.position.y - 6, "ArialBlackWhite", "´", 25);
@@ -1513,7 +1513,7 @@ PixelGym.HowToPlay.prototype = {
 		this.errorText1Accent.visible = false;
 		this.errorText2 = game.add.bitmapText(210, 513, "ArialBlackWhite", STRING_WEBCAMERROR2, 25);
 		this.errorText2.height = 30;
-		this.errorText2.position.y = game.height / 2 - this.errorText2.height / 2 + 15 - 30 + 48;
+		this.errorText2.position.y = game.height / 2 - this.errorText2.height / 2 + 15 - 30 + 32;
 		this.errorText2.position.x = game.width / 2 - this.errorText2.width / 2;
 		this.errorText2.visible = false;
 
@@ -1905,13 +1905,13 @@ PixelGym.Game.prototype = {
 		// ADDING THE CONNECTING TEXT
 		this.connectingText = game.add.bitmapText(210, 513, "ArialBlackWhite", STRING_CONNECTING, 25);
 		this.connectingText.height = 30;
-		this.connectingText.position.y = game.height / 2 - this.connectingText.height / 2 + 48;
+		this.connectingText.position.y = game.height / 2 - this.connectingText.height / 2 + 32;
 		this.connectingText.position.x = game.width / 2 - this.connectingText.width / 2;
 
 		// ADDING THE ERROR TEXT
 		this.errorText1 = game.add.bitmapText(210, 513, "ArialBlackWhite", STRING_WEBCAMERROR1, 25);
 		this.errorText1.height = 30;
-		this.errorText1.position.y = game.height / 2 - this.errorText1.height / 2 - 15 - 30 + 48;
+		this.errorText1.position.y = game.height / 2 - this.errorText1.height / 2 - 15 - 30 + 32;
 		this.errorText1.position.x = game.width / 2 - this.errorText1.width / 2;
 		this.errorText1.visible = false;
 		this.errorText1Accent = game.add.bitmapText(210, this.errorText1.position.y - 6, "ArialBlackWhite", "´", 25);
@@ -1920,7 +1920,7 @@ PixelGym.Game.prototype = {
 		this.errorText1Accent.visible = false;
 		this.errorText2 = game.add.bitmapText(210, 513, "ArialBlackWhite", STRING_WEBCAMERROR2, 25);
 		this.errorText2.height = 30;
-		this.errorText2.position.y = game.height / 2 - this.errorText2.height / 2 + 15 - 30 + 48;
+		this.errorText2.position.y = game.height / 2 - this.errorText2.height / 2 + 15 - 30 + 32;
 		this.errorText2.position.x = game.width / 2 - this.errorText2.width / 2;
 		this.errorText2.visible = false;
 
