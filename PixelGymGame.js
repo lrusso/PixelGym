@@ -2641,6 +2641,9 @@ PixelGym.Game.prototype = {
 			// DISABLING THE GO BACK BUTTON
 			this.backButton.inputEnabled = false;
 
+			// DISABLING THE GO BACK ICON BUTTON
+			this.backButtonIcon.inputEnabled = false;
+
 			// MAKING THE GAME OVER SCREEN VISIBLE
 			this.gameOverBackground.visible = true;
 
