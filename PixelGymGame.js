@@ -199,7 +199,7 @@ var alpha = 0.5;
 var GAME_SOUND_ENABLED = true;
 
 var debugMode = false;
-var testMode = false;
+var howToPlayMode = false;
 var webcamError = false;
 var webcamReadyToDetect = false;
 var webcamReadyToDetectTimeout = null;
@@ -306,7 +306,7 @@ function snapshot()
 			try
 				{
 				// CHECKING IF THE GAME IS RUNNING IN HOW TO PLAY MODE
-				if (testMode==true)
+				if (howToPlayMode==true)
 					{
 					// SHOWING THE DEBUG FRAME
 					game.state.states["PixelGym.HowToPlay"].webcamData.context.drawImage(canvasDiff,0,0);
@@ -436,7 +436,7 @@ function updateCornerBlock(a)
 	try
 		{
 		// CHECKING IF THE GAME IS RUNNING IN HOW TO PLAY MODE
-		if (testMode==true)
+		if (howToPlayMode==true)
 			{
 			// CALLING THE PHASER METHOD
 			game.state.states["PixelGym.HowToPlay"].updateCornerBlock(a);
@@ -1338,7 +1338,7 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyHowToPlayButton.events.onInputUp.add(function()
 			{
 			// SETTING THAT THE GAME WILL BE RUNNING IN HOW TO PLAY MODE
-			testMode = true;
+			howToPlayMode = true;
 
 			// REQUESTING THE WEBCAM ACCESS
 			requestWebcam();
@@ -1356,7 +1356,7 @@ PixelGym.Difficulty.prototype = {
 		this.menuDifficultyHowToPlayButtonText.events.onInputUp.add(function()
 			{
 			// SETTING THAT THE GAME WILL BE RUNNING IN HOW TO PLAY MODE
-			testMode = true;
+			howToPlayMode = true;
 
 			// REQUESTING THE WEBCAM ACCESS
 			requestWebcam();
@@ -1728,8 +1728,8 @@ PixelGym.HowToPlay.prototype = {
 
 	goBack: function()
 		{
-		// SETTING THAT THE GAME WILL NOT BE RUNNING IN TEST MODE
-		testMode = false;
+		// SETTING THAT THE GAME WILL NOT BE RUNNING IN HOW TO PLAY MODE
+		howToPlayMode = false;
 
 		// STOPPING THE WEBCAM
 		stopWebcam();
