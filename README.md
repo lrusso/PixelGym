@@ -28,7 +28,7 @@ https://www.pixelgym.com/?debug=true
 
 https://www.pixelgym.com/Banner.htm
 
-## Motion detection logic based on the work of:
+## Motion detection logic based on the work of
 
 https://github.com/jasonmayes/JS-Motion-Detection
 
