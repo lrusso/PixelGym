@@ -10,8 +10,6 @@ jobs:
       - checkout
       - run:
           name: Building APK
-          command: |
-          cd android
-          ./gradlew assembleRelease
+          command: cd android && ./gradlew assembleRelease
       - store_artifacts:
           path: app/build/outputs/apk/release/app-release-unsigned.apk
