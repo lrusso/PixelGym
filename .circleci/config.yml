@@ -14,9 +14,9 @@ jobs:
       - android/restore-build-cache
       - run:
           name: Assemble release build
-          command: cd android && ./gradlew clean && ./gradlew assembleRelease
+          command: cd android && ./gradlew clean && ./gradlew bundleRelease
       - store_artifacts:
-          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+          path: android/app/build/outputs/aab/release/app-release-unsigned.aab
 
 workflows:
   test-and-build:
