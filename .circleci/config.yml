@@ -1,14 +1,14 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/android
+    working_directory: ~/android/app
     docker:
       - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-        path: ~/android
+          path: ~/android
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
