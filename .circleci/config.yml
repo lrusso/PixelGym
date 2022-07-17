@@ -5,17 +5,6 @@ orbs:
   gcp-cli: circleci/gcp-cli@2.2.0
 
 jobs:
-  android-test:
-    parameters:
-      system-image:
-        type: string
-        default: system-images;android-30;google_apis;x86
-    executor:
-      name: android/android-machine
-      resource-class: xlarge
-    steps:
-      - checkout
-
   release-build:
     executor:
       name: android/android-machine
@@ -35,8 +24,6 @@ workflows:
   test-and-build:
     jobs:
       - release-build:
-          requires:
-            - android-test-all
           filters:
             branches:
               only: main # Commits to main branch
