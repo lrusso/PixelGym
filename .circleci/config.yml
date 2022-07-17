@@ -4,24 +4,22 @@ orbs:
   android: circleci/android@1.0.3
 
 jobs:
-  release-build:
+  android-app:
     executor:
       name: android/android-machine
       resource-class: xlarge
     steps:
       - checkout
-      - android/restore-gradle-cache
-      - android/restore-build-cache
       - run:
-          name: Assemble release build
+          name: Building Android App
           command: cd android && ./gradlew clean && ./gradlew bundleRelease
       - store_artifacts:
           path: android/app/build/outputs/aab/release/app-release-unsigned.aab
 
 workflows:
-  test-and-build:
+  building-apps:
     jobs:
-      - release-build:
+      - android-app:
           filters:
             branches:
               only: main # Commits to main branch
