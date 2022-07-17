@@ -16,6 +16,7 @@ jobs:
       - run:
           name: Assemble release build
           command: |
+            chmod +x gradlew
             ./gradlew assembleRelease
       - store_artifacts:
           path: app/build/outputs/apk/release/app-release-unsigned.apk
