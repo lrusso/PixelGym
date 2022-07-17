@@ -5,6 +5,40 @@ orbs:
   gcp-cli: circleci/gcp-cli@2.2.0
 
 jobs:
+  unit-test:
+    executor:
+      name: android/android-machine
+      resource-class: xlarge
+    steps:
+      - checkout
+
+  android-test:
+    parameters:
+      system-image:
+        type: string
+        default: system-images;android-30;google_apis;x86
+    executor:
+      name: android/android-machine
+      resource-class: xlarge
+    steps:
+      - checkout
+
+  benchmarks-emulator:
+    executor:
+      name: android/android-machine
+      resource-class: xlarge
+
+    steps:
+      - checkout
+
+  benchmarks-ftl:
+    executor:
+      name: android/android
+      sdk-version: "30"
+      variant: node
+    steps:
+      - checkout
+
   release-build:
     executor:
       name: android/android-machine
@@ -23,4 +57,36 @@ jobs:
 workflows:
   test-and-build:
     jobs:
+      - unit-test
+      - android/run-ui-tests:
+          filters:
+            branches:
+              ignore: main # regular commits
+      - android-test:
+          matrix:
+            alias: android-test-all
+            parameters:
+              system-image:
+                - system-images;android-30;google_apis;x86
+                - system-images;android-29;google_apis;x86
+                - system-images;android-28;google_apis;x86
+                - system-images;android-27;google_apis;x86
+                - system-images;android-26;google_apis;x86
+                - system-images;android-25;google_apis;x86
+                - system-images;android-24;google_apis;x86
+                - system-images;android-23;google_apis;x86
+          name: android-test-<<matrix.system-image>>
+          filters:
+            branches:
+              only: main # Commits to main branch
+      - benchmarks-emulator
+      - benchmarks-ftl
       - release-build:
+          requires:
+            - unit-test
+            - android-test-all
+            - benchmarks-emulator
+            - benchmarks-ftl
+          filters:
+            branches:
+              only: main # Commits to main branch
