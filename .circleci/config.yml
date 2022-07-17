@@ -10,9 +10,9 @@ jobs:
       - checkout
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
+          command: ./android/gradlew androidDependencies
       - run:
           name: Building APK
-          command: ./gradlew assembleRelease
+          command: ./android/gradlew assembleRelease
       - store_artifacts:
           path: app/build/outputs/apk/release/app-release-unsigned.apk
