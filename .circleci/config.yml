@@ -19,16 +19,3 @@ jobs:
             ./gradlew assembleRelease
       - store_artifacts:
           path: app/build/outputs/apk/release/app-release-unsigned.apk
-
-workflows:
-  test-and-build:
-    jobs:
-      - release-build:
-          requires:
-            - unit-test
-            - android-test-all
-            - benchmarks-emulator
-            - benchmarks-ftl
-          filters:
-            branches:
-              only: main # Commits to main branch
