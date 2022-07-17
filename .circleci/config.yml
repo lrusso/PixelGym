@@ -5,13 +5,6 @@ orbs:
   gcp-cli: circleci/gcp-cli@2.2.0
 
 jobs:
-  unit-test:
-    executor:
-      name: android/android-machine
-      resource-class: xlarge
-    steps:
-      - checkout
-
   android-test:
     parameters:
       system-image:
@@ -43,7 +36,6 @@ workflows:
     jobs:
       - release-build:
           requires:
-            - unit-test
             - android-test-all
           filters:
             branches:
