@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Building Android App
-          command: cd android && ./gradlew clean && ./gradlew bundleRelease
+          command: cd android && ./gradlew clean && ./gradlew bundleRelease && cd.. && android/app/build/outputs/bundle && ls
       - store_artifacts:
           path: android/app/build/outputs/bundle/release/app-release-unsigned.aab
 
