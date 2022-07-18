@@ -20,6 +20,7 @@ jobs:
           command: |
             if [ "${GIT_COMMIT_DESC}" = 'Update README.md' ]; then
               cd android && ./gradlew clean && ./gradlew bundleRelease
+            fi
       - store_artifacts:
           path: android/app/build/outputs/bundle/release/app-release.aab
 
