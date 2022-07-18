@@ -10,6 +10,7 @@ jobs:
       resource-class: xlarge
     steps:
       - checkout
+      - android/restore-gradle-cache
       - run:
           name: Decoding and writing the Keystore file
           command: base64 -d \<<< "${RELEASE_KEYSTORE_BASE64}" > ./android/keystore
@@ -20,6 +21,7 @@ jobs:
             if [[ "$GIT_COMMIT_DESC" == "Update README.md" ]]; then
               cd android && ./gradlew clean && ./gradlew bundleRelease
             fi
+      - android/save-gradle-cache
       - store_artifacts:
           path: android/app/build/outputs/bundle/release/app-release.aab
 
