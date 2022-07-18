@@ -18,7 +18,7 @@ jobs:
           command: |
             export GIT_COMMIT_DESC="$(git log --format=format:%s -n 1 $CIRCLE_SHA1 | sed 's/\"//g')"
             echo GIT_COMMIT_DESC="$GIT_COMMIT_DESC"
-            if [[ GIT_COMMIT_DESC == "Update README.md" ]]; then
+            if [[ "$GIT_COMMIT_DESC" == "Update README.md" ]]; then
               cd android && ./gradlew clean && ./gradlew bundleRelease
             fi
       - store_artifacts:
