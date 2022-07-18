@@ -24,5 +24,5 @@ jobs:
       - name: Uploading the Android Bundle to the workflow
         uses: actions/upload-artifact@v2
         with:
-          name: Saving the Android Bundle as an artifact
+          name: app-release.aab
           path: android/app/build/outputs/bundle/release/app-release.aab
