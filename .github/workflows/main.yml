@@ -13,7 +13,7 @@ jobs:
           java-version: 11
       - name: Decoding and writing the Keystore file
         run: echo ${{ secrets.KEYSTORE }} | base64 -di > android/keystore
-      - name: Making gradlew executable
+      - name: Making Gradlew executable
         run: chmod +x ./android/gradlew
       - name: Building the Android App Bundle
         run: cd android && ./gradlew clean && ./gradlew bundleRelease
@@ -21,8 +21,8 @@ jobs:
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
           SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-      - name: Uploading the Android Bundle to the workflow
+      - name: Attaching the Android App Bundle to this workflow
         uses: actions/upload-artifact@v2
         with:
-          name: app-release.aab
+          name: app-release
           path: android/app/build/outputs/bundle/release/app-release.aab
