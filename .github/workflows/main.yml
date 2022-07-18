@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: set up JDK 1.8
+      - name: Setting up the environment 
         uses: actions/setup-java@v1
         with:
           java-version: 11
@@ -15,14 +15,14 @@ jobs:
         run: echo ${{ secrets.KEYSTORE }} | base64 -di > android/keystore
       - name: Making gradlew executable
         run: chmod +x ./android/gradlew
-      - name: Building the Android App
+      - name: Building the Android App Bundle
         run: cd android && ./gradlew clean && ./gradlew bundleRelease
         env:
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
           SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-      - name: Upload
+      - name: Uploading the Android Bundle to the workflow
         uses: actions/upload-artifact@v2
         with:
-          name: Build Artifacts
+          name: Saving the Android Bundle as an artifact
           path: android/app/build/outputs/bundle/release/app-release.aab
