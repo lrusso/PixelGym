@@ -39,3 +39,4 @@ https://github.com/jasonmayes/JS-Motion-Detection
 ffmpeg -i in.mp4 -filter:v "crop=1080:2030:0:110" -c:a copy out.mp4
 
 -->
+
