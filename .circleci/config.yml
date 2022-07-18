@@ -12,9 +12,9 @@ jobs:
       - checkout
       - run:
           name: Building Android App
-          command: cd android && ./gradlew clean && ./gradlew bundleRelease && cd.. && cd android/app/build/outputs/bundle && ls
+          command: cd android && ./gradlew clean && ./gradlew bundleRelease
       - store_artifacts:
-          path: android/app/build/outputs/bundle/release/app-release-unsigned.aab
+          path: android/app/build/outputs/bundle/release/app-release.aab
 
 workflows:
   app-builder:
