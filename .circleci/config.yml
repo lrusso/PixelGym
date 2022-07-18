@@ -17,7 +17,9 @@ jobs:
           command: base64 -d \<<< "${RELEASE_KEYSTORE_BASE64}" > ./android/keystore
       - run:
           name: Building the Android App
-          command: cd android && ./gradlew clean && ./gradlew bundleRelease
+          command: |
+            if (( "${GIT_COMMIT_DESC}" = "Update README.md" )); then
+              cd android && ./gradlew clean && ./gradlew bundleRelease
       - store_artifacts:
           path: android/app/build/outputs/bundle/release/app-release.aab
 
