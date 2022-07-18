@@ -12,7 +12,10 @@ jobs:
       - checkout
       - run:
           name: Decoding Keystore
-          command: base64 -D \<<< $RELEASE_KEYSTORE_BASE64 > release.jks
+          command: 
+                if [[ "$RELEASE_KEYSTORE_BASE64" != "" ]]; then
+                  base64 -d \<<< "$RELEASE_KEYSTORE_BASE64" > release-keystore.jks
+                fi
       - run:
           name: Building Android App
           command: cd android && ./gradlew clean && ./gradlew bundleRelease
