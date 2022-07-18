@@ -8,8 +8,6 @@ jobs:
     executor:
       name: android/android-machine
       resource-class: xlarge
-    environment:
-      GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
     steps:
       - checkout
       - run:
@@ -18,7 +16,8 @@ jobs:
       - run:
           name: Building the Android App
           command: |
-            if [[ "$GIT_COMMIT_DESC" == "Update README.md" ]]; then
+            GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
+            if [[ GIT_COMMIT_DESC == "Update README.md" ]]; then
               cd android && ./gradlew clean && ./gradlew bundleRelease
             fi
       - store_artifacts:
