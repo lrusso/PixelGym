@@ -36,6 +36,7 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.userContentController.add(self, name: "iOSShareHandler")
         webConfiguration.allowsInlineMediaPlayback = true
+        webConfiguration.mediaTypesRequiringUserActionForPlayback = []
 
         // CREATING THE WEBVIEW WITH A BLACK BACKGROUND
         webView = WKWebView(frame: self.view.frame, configuration: webConfiguration)
