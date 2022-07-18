@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Building the Android App
           command: |
-            if [ "$GIT_COMMIT_DESC" = 'Update README.md' ]; then
+            if [ $GIT_COMMIT_DESC = 'Update README.md' ]; then
               cd android && ./gradlew clean && ./gradlew bundleRelease
             fi
       - store_artifacts:
