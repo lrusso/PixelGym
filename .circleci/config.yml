@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Decoding Keystore
-          command: echo $RELEASE_KEYSTORE_BASE64 | base64 -d > .keystore
+          command: base64 -d \<<< $RELEASE_KEYSTORE_BASE64 > release.jks
       - run:
           name: Building Android App
           command: cd android && ./gradlew clean && ./gradlew bundleRelease
