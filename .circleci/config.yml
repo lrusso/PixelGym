@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Building the Android App
           command: |
-            export GIT_COMMIT_DESC = "$(git log --format=oneline -n 1 $CIRCLE_SHA1)"
+            export GIT_COMMIT_DESC = "$(git log --format=oneline -n 1 ${CIRCLE_SHA1})"
             if [[ GIT_COMMIT_DESC == "Update README.md" ]]; then
               cd android && ./gradlew clean && ./gradlew bundleRelease
             fi
