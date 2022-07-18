@@ -11,10 +11,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Decoding Keystore
+          name: Decoding and writing the Keystore file
           command: base64 -d \<<< "${RELEASE_KEYSTORE_BASE64}" > ./android/keystore
       - run:
-          name: Building Android App
+          name: Building the Android App
           command: cd android && ./gradlew clean && ./gradlew bundleRelease
       - store_artifacts:
           path: android/app/build/outputs/bundle/release/app-release.aab
