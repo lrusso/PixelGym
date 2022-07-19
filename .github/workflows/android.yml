@@ -1,6 +1,9 @@
 name: App Builder Android
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -16,7 +19,11 @@ jobs:
       - name: Making Gradlew executable
         run: chmod +x ./android/gradlew
       - name: Building the Android App Bundle
-        run: cd android && ./gradlew clean && ./gradlew bundleRelease
+        run: |
+            export GIT_COMMIT_DESC="$(git log --format=format:%s -n 1 $CIRCLE_SHA1 | sed 's/\"//g')"
+            if [[ "$GIT_COMMIT_DESC" == "Update README.md" ]]; then
+              cd android && ./gradlew clean && ./gradlew bundleRelease
+            fi
         env:
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
