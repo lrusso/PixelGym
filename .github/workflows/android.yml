@@ -24,5 +24,16 @@ jobs:
       - name: Attaching the Android App Bundle to this workflow
         uses: actions/upload-artifact@v2
         with:
-          name: app-release
+          name: app-release-aab
           path: android/app/build/outputs/bundle/release/app-release.aab
+      - name: Building the Android App APK
+        run: cd android && ./gradlew clean && ./gradlew assembleRelease
+        env:
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+      - name: Attaching the Android App APK to this workflow
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release-apk
+          path: android/app/build/outputs/release/release/app-release.apk
