@@ -53,7 +53,7 @@ jobs:
 # there you have to create the following secrets:
 #
 # SIGNING_KEYSTORE (must contain your release keystore in Base64)
-# SIGNING_KEYSTORE_PASSWORD (must be a plain text with your Keystore password)
+# SIGNING_KEYSTORE_PASSWORD (must be a plain text with your Keystore Password)
 # SIGNING_KEY_ALIAS (must be a plain text with your Key Alias)
 # SIGNING_KEY_PASSWORD (must be a plain text with your Key Password)
 #
@@ -70,7 +70,7 @@ jobs:
 #        }
 #    }
 #
-# And also this:
+# And also add the following line:
 #
 # signingConfig signingConfigs.release
 #
