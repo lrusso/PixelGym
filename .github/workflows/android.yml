@@ -20,7 +20,7 @@ jobs:
         run: chmod +x ./android/gradlew
       - name: Building the Android App Bundle
         run: |
-            export GIT_COMMIT_DESC="$(git log --format=format:%s -n 1 $CIRCLE_SHA1 | sed 's/\"//g')"
+            export GIT_COMMIT_DESC=${{ github.event.head_commit.message }}
             if [[ "$GIT_COMMIT_DESC" == "Update README.md" ]]; then
               cd android && ./gradlew clean && ./gradlew bundleRelease
             fi
