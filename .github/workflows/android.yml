@@ -37,3 +37,30 @@ jobs:
         with:
           name: app-release-apk
           path: android/app/build/outputs/apk/release/app-release.apk
+
+# ------------------------------------------------------------------------
+# WHAT THIS WORKFLOW ACTUALLY DOES AND HOW TO SET IT AND USE IT
+# ------------------------------------------------------------------------
+#
+# WHAT THIS WORKFLOW ACTUALLY DOES?
+#
+# This workflow will build two files, app-release.apk and app-release.aab.
+# Both files are going to be attached as artifacts (zip files) in the
+# workflow Summary.
+#
+# HOW CAN I SET THIS WORKFLOW?
+#
+# This is a one time operation. You have to go to your repository and
+# Settings/Secrets and there you have to create the following secrets:
+#
+# SIGNING_KEYSTORE (must contain your release keystore in Base64)
+# SIGNING_KEYSTORE_PASSWORD (must be a plain text with your Keystore password)
+# SIGNING_KEY_ALIAS (must be a plain text with your Key Alias)
+# SIGNING_KEY_PASSWORD (must be a plain text with your Key Password)
+#
+# HOW CAN I USE THIS WORKFLOW?
+#
+# This workflow must be trigged manually, once executed and after a few
+# minutes, the workflow will be completed successfully and the two files
+# (the APK and the AAB files) are going to be attached as Artifact (ZIP
+# files) in the workflow Summary.
