@@ -9,12 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checking if the Android App Bundle must be built
-        run: |
-            export GIT_COMMIT_DESC="${{ github.event.head_commit.message }}"
-            if [[ "$GIT_COMMIT_DESC" != "Update README.md" ]]; then
-              exit 1
-            fi
       - uses: actions/checkout@v2
       - name: Setting up the environment 
         uses: actions/setup-java@v1
@@ -25,7 +19,11 @@ jobs:
       - name: Making Gradlew executable
         run: chmod +x ./android/gradlew
       - name: Building the Android App Bundle
-        run: cd android && ./gradlew clean && ./gradlew bundleRelease
+        run: |
+            export GIT_COMMIT_DESC="${{ github.event.head_commit.message }}"
+            if [[ "$GIT_COMMIT_DESC" == "Update README.md" ]]; then
+              cd android && ./gradlew clean && ./gradlew bundleRelease
+            fi
         env:
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
