@@ -1,4 +1,4 @@
-name: Android App Builder
+name: App Builder Android
 
 on: workflow_dispatch
 
