@@ -13,7 +13,7 @@ jobs:
         run: |
             export GIT_COMMIT_DESC="${{ github.event.head_commit.message }}"
             if [[ "$GIT_COMMIT_DESC" != "Update README.md" ]]; then
-              failure()
+              exit 1
             fi
       - uses: actions/checkout@v2
       - name: Setting up the environment 
