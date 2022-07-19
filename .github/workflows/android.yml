@@ -43,7 +43,7 @@ jobs:
 # WHAT THIS WORKFLOW DOES?
 #
 # This workflow will build two files: app-release.apk and app-release.aab. Both files are going to be
-# attached as artifacts (zip files) in the workflow Summary.
+# attached as Artifacts (ZIP files) and available for downloading in that workflow Summary.
 #
 # ------------------------------------------------------------------------------------------------------
 #
