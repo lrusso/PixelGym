@@ -49,7 +49,7 @@ jobs:
 # HOW CAN I SET THIS WORKFLOW?
 #
 # This is a one time operation. You have to go to your repository and
-# Settings/Secrets and there you have to create the following secrets:
+# Settings/Secrets/Actions and there you have to create the following secrets:
 #
 # SIGNING_KEYSTORE (must contain your release keystore in Base64)
 # SIGNING_KEYSTORE_PASSWORD (must be a plain text with your Keystore password)
