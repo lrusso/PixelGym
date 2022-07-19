@@ -12,15 +12,15 @@ jobs:
         with:
           java-version: 11
       - name: Decoding and writing the Keystore file
-        run: echo ${{ secrets.KEYSTORE }} | base64 -di > android/keystore
+        run: echo ${{ secrets.SIGNING_KEYSTORE }} | base64 -di > android/keystore
       - name: Making Gradlew executable
         run: chmod +x ./android/gradlew
       - name: Building the Android App Bundle
         run: cd android && ./gradlew clean && ./gradlew bundleRelease
         env:
+          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
       - name: Attaching the Android App Bundle to this workflow
         uses: actions/upload-artifact@v2
         with:
@@ -29,9 +29,9 @@ jobs:
       - name: Building the Android App APK
         run: cd android && ./gradlew clean && ./gradlew assembleRelease
         env:
+          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
       - name: Attaching the Android App APK to this workflow
         uses: actions/upload-artifact@v2
         with:
@@ -39,10 +39,8 @@ jobs:
           path: android/app/build/outputs/apk/release/app-release.apk
 
 # ------------------------------------------------------------------------
-# WHAT THIS WORKFLOW ACTUALLY DOES AND HOW TO SET IT AND USE IT
-# ------------------------------------------------------------------------
 #
-# WHAT THIS WORKFLOW ACTUALLY DOES?
+# WHAT THIS WORKFLOW DOES?
 #
 # This workflow will build two files, app-release.apk and app-release.aab.
 # Both files are going to be attached as artifacts (zip files) in the
