@@ -9,7 +9,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setting the provisioning profile
         run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          mkdir ~/Library/
+          mkdir ~/Library/MobileDevice
+          mkdir ~/Library/MobileDevice/Provisioning
+          mkdir ~/Library/MobileDevice/Provisioning/Profiles
           echo ${{ secrets.IOS_PROFILE }} | base64 -di > ~/Library/MobileDevice/Provisioning/Profiles/match_AppStore_compixelgym.mobileprovision
           echo ${{ secrets.IOS_CERTIFICATE }} | base64 -di > ./.github/secrets/Certificate.p12
           security create-keychain -p '' build.keychain
