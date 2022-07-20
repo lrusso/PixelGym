@@ -12,15 +12,15 @@ jobs:
         with:
           java-version: 11
       - name: Decoding and writing the Keystore file
-        run: echo ${{ secrets.SIGNING_KEYSTORE }} | base64 -di > android/keystore
+        run: echo ${{ secrets.ANDROID_KEYSTORE }} | base64 -di > android/keystore
       - name: Making Gradlew executable
         run: chmod +x ./android/gradlew
       - name: Building the AAB file
         run: cd android && ./gradlew clean && ./gradlew bundleRelease
         env:
-          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
-          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - name: Attaching the AAB file to this workflow
         uses: actions/upload-artifact@v2
         with:
@@ -29,9 +29,9 @@ jobs:
       - name: Building the APK file
         run: cd android && ./gradlew clean && ./gradlew assembleRelease
         env:
-          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
-          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - name: Attaching the APK file to this workflow
         uses: actions/upload-artifact@v2
         with:
@@ -52,10 +52,10 @@ jobs:
 # This is a one time operation. You have to go to your repository and Settings/Secrets/Actions and
 # there you have to create the following secrets:
 #
-# SIGNING_KEYSTORE (must contain your release keystore in Base64)
-# SIGNING_KEYSTORE_PASSWORD (must be a plain text with your Keystore Password)
-# SIGNING_KEY_ALIAS (must be a plain text with your Key Alias)
-# SIGNING_KEY_PASSWORD (must be a plain text with your Key Password)
+# ANDROID_KEYSTORE (must contain your release keystore in Base64)
+# ANDROID_KEYSTORE_PASSWORD (must be a plain text with your Keystore Password)
+# ANDROID_KEY_ALIAS (must be a plain text with your Key Alias)
+# ANDROID_KEY_PASSWORD (must be a plain text with your Key Password)
 #
 # After that you have to edit the following file: android/app/build.gradle
 # 
@@ -64,9 +64,9 @@ jobs:
 #    signingConfigs {
 #        release {
 #            storeFile file("../keystore")
-#            storePassword System.getenv("SIGNING_KEYSTORE_PASSWORD")
-#            keyAlias System.getenv("SIGNING_KEY_ALIAS")
-#            keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+#            storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
+#            keyAlias System.getenv("ANDROID_KEY_ALIAS")
+#            keyPassword System.getenv("ANDROID_KEY_PASSWORD")
 #        }
 #    }
 #
