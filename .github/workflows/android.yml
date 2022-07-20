@@ -3,7 +3,7 @@ name: App Builder Android
 on: workflow_dispatch
 
 jobs:
-  build:
+  app-builder-android:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
