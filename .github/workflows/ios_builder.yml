@@ -9,7 +9,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setting the provisioning profile
         run: |
-          mkdir ~/Library/
           mkdir ~/Library/MobileDevice
           mkdir ~/Library/MobileDevice/Provisioning
           mkdir ~/Library/MobileDevice/Provisioning/Profiles
