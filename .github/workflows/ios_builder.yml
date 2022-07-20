@@ -21,8 +21,6 @@ jobs:
           security default-keychain -s ~/Library/Keychains/build.keychain
           security unlock-keychain -p '' ~/Library/Keychains/build.keychain
           security set-key-partition-list -S apple-tool:,apple: -s -k '' ~/Library/Keychains/build.keychain
-      - name: Setting that XCode 13.4.1 will be used
-        run: sudo xcode-select -switch /Applications/Xcode_13.4.1.app
       - name: Archiving the project
         run: |
           cd ios && xcodebuild -workspace PixelGym.xcworkspace \
