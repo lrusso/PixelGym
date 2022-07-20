@@ -10,11 +10,11 @@ jobs:
       - name: Setting the provisioning profile
         run: |
           mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
-          echo ${{ secrets.IOS_PROFILE }} | base64 -di > ./.github/secrets/match_AppStore_compixelgym.mobileprovision
-          echo ${{ secrets.IOS_CERTIFICATE }} | base64 -di > ./.github/secrets/Certificate.p12
-          cp ./.github/secrets/match_AppStore_compixelgym.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/match_AppStore_compixelgym.mobileprovision
+          echo ${{ secrets.IOS_PROFILE }} | base64 -di > match_AppStore_compixelgym.mobileprovision
+          echo ${{ secrets.IOS_CERTIFICATE }} | base64 -di > Certificate.p12
+          cp match_AppStore_compixelgym.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/match_AppStore_compixelgym.mobileprovision
           security create-keychain -p '' build.keychain
-          security import ./.github/secrets/Certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P '' -A
+          security import Certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P '' -A
           security list-keychains -s ~/Library/Keychains/build.keychain
           security default-keychain -s ~/Library/Keychains/build.keychain
           security unlock-keychain -p '' ~/Library/Keychains/build.keychain
