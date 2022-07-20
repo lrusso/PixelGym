@@ -12,7 +12,7 @@ jobs:
           mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
           echo ${{ secrets.IOS_PROFILE }} | base64 -di > match_AppStore_compixelgym.mobileprovision
           echo ${{ secrets.IOS_CERTIFICATE }} | base64 -di > Certificate.p12
-          cp match_AppStore_compixelgym.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/match_AppStore_compixelgym.mobileprovision
+          cp match_AppStore_compixelgym.mobileprovision "~/Library/MobileDevice/Provisioning\ Profiles/match_AppStore_compixelgym.mobileprovision"
           security create-keychain -p '' build.keychain
           security import Certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P '' -A
           security list-keychains -s ~/Library/Keychains/build.keychain
