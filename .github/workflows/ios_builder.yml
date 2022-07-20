@@ -10,11 +10,11 @@ jobs:
       - name: Creating the Provisioning Profiles folder
         run: mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
       - name: Decoding and writing the Provisioning Profile
-        run: echo ${{ secrets.IOS_PROFILE }} | base64 -di > match_AppStore_compixelgym.mobileprovision
+        run: echo ${{ secrets.IOS_PROFILE }} | base64 -di > myProfile
       - name: Decoding and writing the Distribution Certificate
         run: echo ${{ secrets.IOS_CERTIFICATE }} | base64 -di > Certificate.p12
       - name: Copying the Provisioning Profile
-        run: cp match_AppStore_compixelgym.mobileprovision "~/Library/MobileDevice/Provisioning\ Profiles/match_AppStore_compixelgym.mobileprovision"
+        run: cp myProfile "~/Library/MobileDevice/Provisioning\ Profiles/match_AppStore_compixelgym.mobileprovision"
       - name: Updating the keychain
         run: |
           security create-keychain -p '' build.keychain
