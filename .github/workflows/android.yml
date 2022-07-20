@@ -27,7 +27,7 @@ jobs:
           name: app-release-aab
           path: android/app/build/outputs/bundle/release/app-release.aab
       - name: Building the APK file
-        run: ./gradlew clean && ./gradlew assembleRelease
+        run: cd android && ./gradlew clean && ./gradlew assembleRelease
         env:
           SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
