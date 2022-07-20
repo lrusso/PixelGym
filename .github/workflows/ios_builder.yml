@@ -7,12 +7,16 @@ jobs:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setting the provisioning profile
+      - name: Creating the Provisioning Profiles folder
+        run: mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
+      - name: Decoding and writing the Provisioning Profile
+        run: echo ${{ secrets.IOS_PROFILE }} | base64 -di > match_AppStore_compixelgym.mobileprovision
+      - name: Decoding and writing the Distribution Certificate
+        run: echo ${{ secrets.IOS_CERTIFICATE }} | base64 -di > Certificate.p12
+      - name: Copying the Provisioning Profile
+        run: cp match_AppStore_compixelgym.mobileprovision "~/Library/MobileDevice/Provisioning\ Profiles/match_AppStore_compixelgym.mobileprovision"
+      - name: Updating the keychain
         run: |
-          mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
-          echo ${{ secrets.IOS_PROFILE }} | base64 -di > match_AppStore_compixelgym.mobileprovision
-          echo ${{ secrets.IOS_CERTIFICATE }} | base64 -di > Certificate.p12
-          cp match_AppStore_compixelgym.mobileprovision "~/Library/MobileDevice/Provisioning\ Profiles/match_AppStore_compixelgym.mobileprovision"
           security create-keychain -p '' build.keychain
           security import Certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P '' -A
           security list-keychains -s ~/Library/Keychains/build.keychain
