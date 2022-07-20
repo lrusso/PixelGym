@@ -15,24 +15,24 @@ jobs:
         run: echo ${{ secrets.SIGNING_KEYSTORE }} | base64 -di > android/keystore
       - name: Making Gradlew executable
         run: chmod +x ./android/gradlew
-      - name: Building the Android App Bundle
+      - name: Building the AAB file
         run: cd android && ./gradlew clean && ./gradlew bundleRelease
         env:
           SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-      - name: Attaching the Android App Bundle to this workflow
+      - name: Attaching the AAB file to this workflow
         uses: actions/upload-artifact@v2
         with:
           name: app-release-aab
           path: android/app/build/outputs/bundle/release/app-release.aab
-      - name: Building the Android App APK
-        run: cd android && ./gradlew clean && ./gradlew assembleRelease
+      - name: Building the APK file
+        run: ./gradlew clean && ./gradlew assembleRelease
         env:
           SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-      - name: Attaching the Android App APK to this workflow
+      - name: Attaching the APK file to this workflow
         uses: actions/upload-artifact@v2
         with:
           name: app-release-apk
