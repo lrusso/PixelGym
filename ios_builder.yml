@@ -1,0 +1,47 @@
+name: App Builder iOS
+
+on: workflow_dispatch
+
+jobs:
+  app-builder-ios:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Creating the Provisioning Profiles folder
+        run: mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
+      - name: Decoding and writing the Provisioning Profile
+        run: echo ${{ secrets.IOS_PROFILE }} | base64 -di > ios/myProfile
+      - name: Decoding and writing the Distribution Certificate
+        run: echo ${{ secrets.IOS_CERTIFICATE }} | base64 -di > Certificate.p12
+      - name: Copying the Provisioning Profile
+        run: cp ios/myProfile "~/Library/MobileDevice/Provisioning\ Profiles/match_AppStore_compixelgym.mobileprovision"
+      - name: Updating the keychain
+        run: |
+          security create-keychain -p '' build.keychain
+          security import Certificate.p12 -t agg -k ~/Library/Keychains/build.keychain -P '' -A
+          security list-keychains -s ~/Library/Keychains/build.keychain
+          security default-keychain -s ~/Library/Keychains/build.keychain
+          security unlock-keychain -p '' ~/Library/Keychains/build.keychain
+          security set-key-partition-list -S apple-tool:,apple: -s -k '' ~/Library/Keychains/build.keychain
+      - name: Setting that XCode 13.4.1 will be used
+        run: sudo xcode-select -switch /Applications/Xcode_13.4.1.app
+      - name: Archiving the project
+        run: |
+          cd ios && xcodebuild -workspace PixelGym.xcworkspace \
+            -scheme PixelGym \
+            -sdk iphoneos \
+            -configuration AppStoreDistribution \
+            -archivePath build/PixelGym.xcarchive \
+            clean archive | xcpretty
+      - name: Exporting the IPA file
+        run: |
+          cd ios && xcodebuild -archivePath build/PixelGym.xcarchive \
+            -exportOptionsPlist PixelGym/exportOptions.plist \
+            -exportPath build \
+            -allowProvisioningUpdates \
+            -exportArchive | xcpretty
+      - name: Attaching the IPA file to this workflow
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release-ipa
+          path: ios/build
