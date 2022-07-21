@@ -54,7 +54,7 @@ jobs:
 #
 # For this:
 #
-#     xcodebuild -workspace Calculator.xcworkspace
+#     xcodebuild -workspace PixelGym.xcworkspace
 #
 # 2) You can force the Xcode version by adding the following code:
 #
