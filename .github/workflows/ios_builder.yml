@@ -25,7 +25,7 @@ jobs:
         run: sudo xcode-select -switch /Applications/Xcode_13.2.1.app
       - name: Archiving the project
         run: |
-          cd ios && cd PixelGym.xcodeproj && xcodebuild -workspace project.xcworkspace \
+          cd ios && xcodebuild -project PixelGym.xcodeproj \
             -scheme PixelGym \
             -configuration Release \
             -destination 'generic/platform=iOS'
