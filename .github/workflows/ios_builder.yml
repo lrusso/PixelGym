@@ -21,14 +21,14 @@ jobs:
           security default-keychain -s ~/Library/Keychains/build.keychain
           security unlock-keychain -p '' ~/Library/Keychains/build.keychain
           security set-key-partition-list -S apple-tool:,apple: -s -k '' ~/Library/Keychains/build.keychain
+      - name: Setting that XCode 13.2.1 will be used
+        run: sudo xcode-select -switch /Applications/Xcode_13.2.1.app
       - name: Archiving the project
         run: |
           cd ios && cd PixelGym.xcodeproj && xcodebuild -workspace project.xcworkspace \
             -scheme PixelGym \
             -sdk iphoneos \
-            -destination generic/platform=iOS
             -configuration Release \
-            -name Any
             -archivePath build/PixelGym.xcarchive \
             clean archive
       - name: Exporting the IPA file
