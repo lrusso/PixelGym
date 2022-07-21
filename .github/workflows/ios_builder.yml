@@ -10,7 +10,7 @@ jobs:
       - name: Creating the Provisioning Profiles folder
         run: mkdir -p "~/Library/MobileDevice/Provisioning Profiles"
       - name: Decoding and writing the Provisioning Profile
-        run: echo "${{ secrets.IOS_PROFILE }}" | base64 -Dd > "~/Library/MobileDevice/Provisioning Profiles/Leonardo_Russo.mobileprovision"
+        run: echo "${{ secrets.IOS_PROFILE }}" | base64 -Dd > "~/Library/MobileDevice/Provisioning Profiles/LeonardoRusso.mobileprovision"
       - name: Decoding and writing the Distribution Certificate
         run: echo ${{ secrets.IOS_CERTIFICATE }} | base64 -Dd > Certificate.p12
       - name: Updating the keychain
@@ -30,7 +30,7 @@ jobs:
             -configuration Release \
             -destination 'generic/platform=iOS'
             -archivePath build/PixelGym.xcarchive \
-            -PROVISIONING_PROFILE='Leonardo_Russo' \
+            -PROVISIONING_PROFILE='LeonardoRusso' \
             clean archive
       - name: Exporting the IPA file
         run: |
