@@ -30,6 +30,7 @@ jobs:
             -configuration Release \
             -destination 'generic/platform=iOS'
             -archivePath build/PixelGym.xcarchive \
+            -PROVISIONING_PROFILE='Leonardo_Russo' \
             clean archive
       - name: Exporting the IPA file
         run: |
