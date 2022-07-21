@@ -43,3 +43,23 @@ jobs:
         with:
           name: app-release-ipa
           path: ios/build
+
+# ------------------------------------------------------------------------
+# THINGS TO KEEP IN MIND
+#
+# 1) If you have a workspace instead of a project, you should replace this:
+#
+#     xcodebuild -project PixelGym.xcodeproj
+#
+# For this:
+#
+#     xcodebuild -workspace Calculator.xcworkspace
+#
+# 2) You can force the Xcode version with the following:
+#
+#     - name: Setting that XCode 13.2.1 will be used
+#       run: sudo xcode-select -switch /Applications/Xcode_13.2.1.app
+#
+# 3) The Certificate and Provisional Profile, both expire in one year.
+# So, eventually, this workflow will require to you to update the stored
+# Certificate and Provisional Profile.
