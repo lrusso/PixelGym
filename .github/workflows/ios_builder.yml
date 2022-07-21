@@ -45,6 +45,7 @@ jobs:
           path: ios/build
 
 # ------------------------------------------------------------------------
+#
 # THINGS TO KEEP IN MIND
 #
 # 1) If you have a workspace instead of a project, you should replace this:
@@ -57,9 +58,12 @@ jobs:
 #
 # 2) You can force the Xcode version with the following:
 #
-#     - name: Setting that XCode 13.2.1 will be used
+#     - name: Setting that Xcode 13.2.1 will be used
 #       run: sudo xcode-select -switch /Applications/Xcode_13.2.1.app
+#
+# NOTE: Sometimes the Runner won't have the Xcode version that you require.
 #
 # 3) The Certificate and Provisional Profile, both expire in one year.
 # So, eventually, this workflow will require to you to update the stored
 # Certificate and Provisional Profile.
+#
