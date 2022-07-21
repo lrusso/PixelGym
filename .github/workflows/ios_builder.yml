@@ -23,7 +23,7 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -s -k '' ~/Library/Keychains/build.keychain
       - name: Archiving the project
         run: |
-          cd ios && cd PixelGym && xcodebuild -workspace PixelGym.xcworkspace \
+          cd ios && cd PixelGym && xcodebuild -workspace project.xcworkspace \
             -scheme PixelGym \
             -sdk iphoneos \
             -configuration AppStoreDistribution \
