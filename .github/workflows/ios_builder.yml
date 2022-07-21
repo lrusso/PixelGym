@@ -27,9 +27,8 @@ jobs:
         run: |
           cd ios && cd PixelGym.xcodeproj && xcodebuild -workspace project.xcworkspace \
             -scheme PixelGym \
-            -sdk iphoneos \
             -configuration Release \
-            -destination 'platform=iOS,name=Any iOS Device' \
+            -destination 'generic/platform=iOS'
             -archivePath build/PixelGym.xcarchive \
             clean archive
       - name: Exporting the IPA file
